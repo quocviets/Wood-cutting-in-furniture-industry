@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from policy.BestFit import best_fit_policy
 from policy.FirstFit import first_fit_policy
+from policy.Greedy import greedy_policy
 
 def create_sample_data():
     """
@@ -10,9 +11,9 @@ def create_sample_data():
     """
     observation = {
         "products": [
-            {"size": (3, 3), "quantity": 2},
-            {"size": (2, 2), "quantity": 3},
-            {"size": (4, 4), "quantity": 1}
+            {"size": (3, 3), "quantity": 2, "id": 1},
+            {"size": (2, 2), "quantity": 3, "id": 2},
+            {"size": (4, 4), "quantity": 1, "id": 3}
         ],
         "stocks": [
             np.full((6, 6), -1),  # Kho trống kích thước 6x6
@@ -28,17 +29,20 @@ def place_product(stock, pos_x, pos_y, size, product_id):
 
 def visualize_stocks(stocks, products, title="Stock Visualization"):
     """
-    Hiển thị các stocks với màu sắc khác nhau cho từng loại sản phẩm.
+    Hiển thị các kho với màu sắc cố định cho từng loại sản phẩm.
     """
     fig, axes = plt.subplots(1, len(stocks), figsize=(5 * len(stocks), 5))
-    
+
     if len(stocks) == 1:
         axes = [axes]  # Đảm bảo axes là danh sách
     
-    # Tạo màu cho từng loại sản phẩm
-    product_colors = {}
-    cmap = plt.get_cmap("tab10")  # Chọn 10 màu khác nhau
-    color_index = 0
+    # Định nghĩa màu cố định cho từng sản phẩm
+    product_colors = {
+        1: "#0000FF",  # Blue
+        2: "#FFD700",  # Gold (Yellow)
+        3: "#FF0000"   # Red
+    }
+
 
     for i, stock in enumerate(stocks):
         ax = axes[i]
@@ -47,32 +51,28 @@ def visualize_stocks(stocks, products, title="Stock Visualization"):
         ax.grid(True, color="black", linewidth=0.5)
         ax.set_xticklabels([])
         ax.set_yticklabels([])
-        ax.set_title(f"{title} - Stock {i}")
         ax.set_title(f"Stock {i}")
 
         for x in range(stock.shape[0]):
             for y in range(stock.shape[1]):
                 cell_value = stock[x, y]
-                
-                if cell_value > 0:
-                    # Ánh xạ sản phẩm vào màu sắc
-                    if cell_value not in product_colors:
-                        product_colors[cell_value] = cmap(color_index % 10)
-                        color_index += 1
-                    
-                    color = product_colors[cell_value]
+                print(f"Stock {i} at ({x},{y}): {cell_value}")  # Debug giá trị
 
-                    # Vẽ hình chữ nhật với màu sản phẩm
+                if cell_value >= 1:  # Đảm bảo ID hợp lệ
+                    color = product_colors.get(int(cell_value), "gray")  # Chuyển sang int tránh lỗi
                     rect = patches.Rectangle((y, stock.shape[0] - x - 1), 1, 1,
-                                             linewidth=1.5, edgecolor="black",
-                                             facecolor=color)
+                                            linewidth=1.5, edgecolor="black",
+                                            facecolor=color)
                     ax.add_patch(rect)
-    
+
+
     plt.show()
+
 
 def main():
     observation_ff, info_ff = create_sample_data()
     observation_bf, info_bf = create_sample_data()
+    observation_greedy, info_greedy = create_sample_data()
 
     # observation, info = create_sample_data()
     # print("Dữ liệu đầu vào:", observation, info)
@@ -88,5 +88,10 @@ def main():
     best_fit_policy(observation_bf, info_bf)  
     visualize_stocks(observation_bf["stocks"], "Best-Fit Algorithm")
 
+
+    print("Chạy thuật toán Greedy...")
+    greedy_policy(observation_greedy, info_greedy)
+    visualize_stocks(observation_greedy["stocks"], observation_greedy["products"], "Greedy Algorithm")
+    
 if __name__ == "__main__":
     main()

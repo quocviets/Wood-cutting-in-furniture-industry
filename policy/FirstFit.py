@@ -31,8 +31,7 @@ def first_fit_policy(observation, info):
                 for x in range(stock_w - prod_w + 1):
                     for y in range(stock_h - prod_h + 1):
                         if np.all(stock[x:x + prod_w, y:y + prod_h] == -1):
-                            # Đặt sản phẩm vào stock
-                            stock[x:x + prod_w, y:y + prod_h] = 1  
+                            stock[x:x + prod_w, y:y + prod_h] = prod["id"]  
                             placed = True
                             break
                     if placed:
@@ -44,7 +43,7 @@ def first_fit_policy(observation, info):
             if not placed:
                 # Nếu không tìm thấy vị trí, tạo kho mới
                 new_stock = np.full((max(prod_w, 5), max(prod_h, 5)), -1)  # Kho mới có kích thước tối thiểu
-                new_stock[0:prod_w, 0:prod_h] = 1
+                new_stock[0:prod_w, 0:prod_h] = prod["id"]
                 observation["stocks"].append(new_stock)
     
     return observation["stocks"]  # Trả về danh sách kho sau khi cập nhật
