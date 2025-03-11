@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from env.env_reward import compute_reward, compute_cost
+
 
 def sort_pieces_by_area(pieces):
     return sorted(pieces, key=lambda p: p['width'] * p['height'], reverse=True)
@@ -46,7 +48,7 @@ def first_fit_cutting(stocks, pieces):
 
 def visualize_cutting(stocks, layouts):
     for i, (stock, layout) in enumerate(layouts):
-        fig, ax = plt.subplots(figsize=(6, 10))
+        fig, ax = plt.subplots(figsize=(12, 20))
         ax.set_xlim(0, stock['width'])
         ax.set_ylim(0, stock['height'])
         ax.set_xticks(range(0, stock['width']+1, 10))
@@ -57,15 +59,19 @@ def visualize_cutting(stocks, layouts):
             ax.add_patch(plt.Rectangle((x, y), w, h, edgecolor='black', facecolor=np.random.rand(3,), lw=2))
             ax.text(x + w/2, y + h/2, str(piece_id), ha='center', va='center', fontsize=12, color='white', weight='bold')
         
+        reward = compute_reward([np.array([[p[0] for p in layout]])])
+        cost = compute_cost(np.array([[p[0] for p in layout]]))
+        print(f"Stock {i+1} - Reward: {reward:.2f}, Cost: {cost:.2f}")
+        
         ax.set_title(f"Cutting Stock Optimization - Stock {i+1}")
         plt.gca().invert_yaxis()
         plt.show()
 
 # Dữ liệu đầu vào
 stocks = [
-    {"width": 50, "height": 100},
-    {"width": 50, "height": 100},
-    {"width": 30, "height": 50}
+    {"width": 100, "height": 200},
+    {"width": 100, "height": 200},
+    {"width": 60, "height": 200}
 ]
 
 pieces = [
