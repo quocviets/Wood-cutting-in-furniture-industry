@@ -35,7 +35,7 @@ After applying the **First Fit** approach, the stock sheets are used as follows:
 
 ### Stock 1 Layout
 
-![Stock 1 Layout](Heuristic/Heuristic With Many Stocks/Figure_1.png)
+![Stock 1 Layout](Heuristic/Heuristic_With_Many_Stocks/First_Fit/Figure_1.png)
 
 
 
