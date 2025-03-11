@@ -12,10 +12,10 @@ This project implements the **2D Cutting Stock Problem** using heuristic algorit
 The visualization of the cutting layout shows how the pieces are arranged within the stock material. The algorithm comparison helps determine which method results in less material waste.
 
 ### First Fit Layout
-![First Fit Layout](./First_fit.png)
+![First Fit Layout](./first_fit.png)
 
 ### Best Fit Layout
-![Best Fit Layout](./Best_fit.png)
+![Best Fit Layout](./best_fit.png)
 
 ### Greedy Layout
 ![Greedy Layout](./Greedy.png)
