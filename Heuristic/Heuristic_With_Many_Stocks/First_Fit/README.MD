@@ -34,8 +34,7 @@ This project addresses the **2D Cutting Stock Problem** using the **First Fit he
 After applying the **First Fit** approach, the stock sheets are used as follows:
 
 ### Stock 1 Layout
-
-![Stock 1 Layout](Heuristic/Heuristic_With_Many_Stocks/First_Fit/Figure_1.png)
+![First Fit Layout](./FirstFitCutting.png)
 
 
 
