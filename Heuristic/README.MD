@@ -11,10 +11,10 @@ This project implements the **2D Cutting Stock Problem** using heuristic algorit
 The visualization of the cutting layout shows how the pieces are arranged within the stock material. The algorithm comparison helps determine which method results in less material waste.
 
 ### First Fit Layout
-![First Fit Layout](./first_fit_layout.png)
+![First Fit Layout](./FirstFitCutting.png)
 
 ### Best Fit Layout
-![Best Fit Layout](./best_fit_layout.png)
+![Best Fit Layout](./BestFitCutting.png)
 The visualization of the cutting layout shows how the pieces are arranged within the stock material. The algorithm comparison helps determine which method results in less material waste.
 
 ## 🔢 Waste Calculation
@@ -23,8 +23,8 @@ The amount of unused material is calculated as:
 Waste = Total Stock Area - Used Area
 ```
 Results:
-- **First Fit Waste**: XX square units
-- **Best Fit Waste**: XX square units
+- **First Fit Waste**: 11200 square units
+- **Best Fit Waste**: 11200 square units
 
 ## 📷 Visualization
 Both algorithms generate graphical representations of the cutting layouts to help analyze efficiency.
@@ -36,7 +36,7 @@ Both algorithms generate graphical representations of the cutting layouts to hel
    ```
 2. Run the script:  
    ```bash
-   python cutting_stock_heuristic.py
+   python cutting2.py
    ```
 
 ## 📌 Conclusion
