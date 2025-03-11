@@ -90,7 +90,7 @@ This table provides a breakdown of how the pieces were placed on the stock sheet
    ```
 2. Run the script:
    ```bash
-   python cutting_stock.py
+   python first-fit.py
    ```
 
 ## 📌 Conclusion
