@@ -74,6 +74,11 @@ This table provides a breakdown of how the pieces were placed on the stock sheet
 
 ## 🚮 Waste Summary
 
+The amount of unused material is calculated as:
+```
+Waste = Total Stock Area - Used Area
+```
+
 | Stock ID        | Used Area (cm²) | Waste Area (cm²) |
 | --------------- | --------------- | ---------------- |
 | 1               | 6000            | 1200             |
