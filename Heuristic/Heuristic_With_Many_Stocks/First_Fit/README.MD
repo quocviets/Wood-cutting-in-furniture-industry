@@ -74,10 +74,13 @@ This table provides a breakdown of how the pieces were placed on the stock sheet
 
 ## 🚮 Waste Summary
 
-The amount of unused material is calculated as:
-```
-Waste = Total Stock Area - Used Area
-```
+The table below shows the amount of material used and wasted for each stock sheet after applying the First Fit approach. The Used Area represents the total area occupied by cut pieces, while the Waste Area refers to the remaining unused material. A lower waste area indicates a more efficient cutting strategy.
+
+Total Area = Stock Length × Stock Width
+Used Area = Sum of all placed pieces' areas
+Waste Area = Total Area - Used Area
+
+The total waste is the sum of all individual waste areas across the used stock sheets.
 
 | Stock ID        | Used Area (cm²) | Waste Area (cm²) |
 | --------------- | --------------- | ---------------- |
