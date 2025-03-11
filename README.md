@@ -6,7 +6,7 @@ This project implements the **2D Cutting Stock Problem** using heuristic algorit
 ## 🛠️ Algorithms Used
 - **First Fit**: Places each piece in the first available space.
 - **Best Fit**: Finds the placement that minimizes wasted space.
-- **GreedyGreedy**: Choose the first available position but prioritize minimizing waste by checking each stock.
+- **Greedy**: Choose the first available position but prioritize minimizing waste by checking each stock.
 
 ## 📊 Results
 The visualization of the cutting layout shows how the pieces are arranged within the stock material. The algorithm comparison helps determine which method results in less material waste.
