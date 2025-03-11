@@ -39,15 +39,15 @@ After applying the **First Fit** approach, the stock sheets are used as follows:
 
 
 ### Stock 2 Layout
-
+![Stock 2 Layout](./Figure_2.png)
 
 
 ### Stock 3 Layout
-
+![Stock 3 Layout](./Figure_3.png)
 
 
 ### Stock 4 Layout
-
+![Stock 4 Layout](./Figure_4.png)
 
 
 ## 📋 Summary Table
