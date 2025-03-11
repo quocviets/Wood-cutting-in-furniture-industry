@@ -52,6 +52,8 @@ After applying the **First Fit** approach, the stock sheets are used as follows:
 
 ## 📋 Summary Table
 
+This table provides a breakdown of how the pieces were placed on the stock sheets using the First Fit approach. Each row represents a piece that was successfully placed, detailing the stock sheet it was placed on, the dimensions of the piece, and its position on the stock sheet.
+
 | Stock ID | Piece ID | Dimensions (cm) | Position (X, Y) |
 | -------- | -------- | --------------- | --------------- |
 | 1        | 1        | 50 x 30         | (0,0)           |
