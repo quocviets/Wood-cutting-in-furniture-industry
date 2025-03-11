@@ -36,19 +36,18 @@ After applying the **Best Fit** approach, the stock sheets are used as follows:
 
 ### Stock 1 Layout
 
-![Stock 1 Layout](Figures/Stock1.png)
+![Stock 1 Layout](./Figure_1.png)
 
 ### Stock 2 Layout
 
-![Stock 2 Layout](Figures/Stock2.png)
-
+![Stock 2 Layout](./Figure_2.png)
 ### Stock 3 Layout
 
-![Stock 3 Layout](Figures/Stock3.png)
+![Stock 3 Layout](./Figure_3.png)
 
 ### Stock 4 Layout
 
-![Stock 4 Layout](Figures/Stock4.png)
+![Stock 4 Layout](./Figure_4.png)
 
 ## 📋 Summary Table
 
