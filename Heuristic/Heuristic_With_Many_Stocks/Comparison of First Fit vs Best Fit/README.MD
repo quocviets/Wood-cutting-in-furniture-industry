@@ -4,6 +4,8 @@
 | **First Fit** | 4400  | -80   |
 | **Best Fit**  | 2700  | -140  |
 
+![Results](./compare.png)
+
 ### 📝 Observations
 1. **Waste Reduction**
    - First Fit results in more waste (**4400**) compared to Best Fit (**2700**), showing a reduction of **1700 units**.
