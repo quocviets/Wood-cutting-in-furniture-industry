@@ -29,7 +29,8 @@ Waste = Total Stock Area - Used Area
 Results:
 - **First Fit Waste**: 11200 square units
 - **Best Fit Waste**: 11200 square units
-
+- **Greedy Waste**: 43200 square units
+-> Greedy has a higher level of waste compared to First Fit and Best Fit. This may be because Greedy does not optimize the placement of fragments but simply chooses the first suitable position without considering the remaining free space.
 ## 📷 Visualization
 Both algorithms generate graphical representations of the cutting layouts to help analyze efficiency.
 
