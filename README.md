@@ -22,7 +22,7 @@ We have implemented various algorithms to tackle this problem, including:
 
 - **Group 2 Members**
   - 🧑‍🎓 Member 1 - 📧 member1@example.com - 🎓 Student ID: 123456
-  - 🧑‍🎓 Member 2 - 📧 member2@example.com - 🎓 Student ID: 234567
+  - 🧑‍🎓 Lê Văn Chương - 📧 chuonglvqe170039@fpt.edu.vn - 🎓 Student ID: QE170039
   - 🧑‍🎓 Nguyễn Ngọc Phúc - 📧 phucnnqe170087@fpt.edu.vn - 🎓 Student ID: QE170087
   - 🧑‍🎓 Member 4 - 📧 member4@example.com - 🎓 Student ID: 456789
   - 🧑‍🎓 Member 5 - 📧 member4@example.com - 🎓 Student ID: 456789
