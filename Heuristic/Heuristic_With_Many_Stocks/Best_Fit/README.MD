@@ -89,6 +89,8 @@ To assess the efficiency of the cutting strategy, a reward system is introduced:
 - **Penalty of -10 points for each piece that could not be placed**.
 - The final reward score helps evaluate the effectiveness of the approach.
 
+![Reward System](./reward.png)
+
 ## ▶️ How to Run
 
 1. Install dependencies:
