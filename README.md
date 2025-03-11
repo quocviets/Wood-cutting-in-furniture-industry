@@ -1,43 +1,47 @@
-# 🪵 Wood Cutting in Furniture Industry - Capstone Assignment (REL301M)
+# 🪵 Cutting Stock Problem - Heuristic Approach
 
-## ✂️ Group 2 - Cutting Stock Problem 2D
+## 📌 Introduction
+This project implements the **2D Cutting Stock Problem** using heuristic algorithms: **First Fit** and **Best Fit**. The goal is to optimize the cutting of rectangular pieces from a larger stock material while minimizing waste.
 
-### 📌 Overview
+## 🛠️ Algorithms Used
+- **First Fit**: Places each piece in the first available space.
+- **Best Fit**: Finds the placement that minimizes wasted space.
+- **GreedyGreedy**: Choose the first available position but prioritize minimizing waste by checking each stock.
 
-This repository contains the capstone project for the course **Reinforcement Learning (REL301M)**. Our project focuses on solving the **2D Cutting Stock Problem (CSP)** in the **furniture industry**, optimizing wood cutting to minimize waste and maximize efficiency using heuristic and reinforcement learning approaches.
+## 📊 Results
+The visualization of the cutting layout shows how the pieces are arranged within the stock material. The algorithm comparison helps determine which method results in less material waste.
 
-### 🏗️ Problem Statement
+### First Fit Layout
+![First Fit Layout](./First_fit.png)
 
-The **2D Cutting Stock Problem** involves cutting rectangular demand pieces from larger wooden stock sheets while minimizing waste. This problem has significant applications in industries like furniture manufacturing, where efficient material utilization directly impacts costs and sustainability.
+### Best Fit Layout
+![Best Fit Layout](./Best_fit.png)
 
-### ⚙️ Approach
+### Greedy Layout
+![Greedy Layout](./Greedy.png)
 
-We have implemented various algorithms to tackle this problem, including:
 
-- ✅ **First Fit Algorithm**: Places each demand piece in the first available position on a stock sheet.
-- 🏆 **Best Fit Algorithm**: Chooses the best possible position based on remaining space.
-- 🤖 **Reinforcement Learning-based Approach**: Uses RL techniques to optimize cutting strategies over time.
+## 🔢 Waste Calculation
+The amount of unused material is calculated as:
+```
+Waste = Total Stock Area - Used Area
+```
+Results:
+- **First Fit Waste**: 11200 square units
+- **Best Fit Waste**: 11200 square units
 
-### 👥 Contributors
+## 📷 Visualization
+Both algorithms generate graphical representations of the cutting layouts to help analyze efficiency.
 
-- **Group 2 Members**
-  - 🧑‍🎓 Nguyễn lê Quốc Việt - 📧 vietnlqqe170144@fpt.edu.vn - 🎓 Student ID: QE170144
-  - 🧑‍🎓 Lê Văn Chương - 📧 chuonglvqe170039@fpt.edu.vn - 🎓 Student ID: QE170039
-  - 🧑‍🎓 Nguyễn Ngọc Phúc - 📧 phucnnqe170087@fpt.edu.vn - 🎓 Student ID: QE170087
-  - 🧑‍🎓 Member 4 - 📧 member4@example.com - 🎓 Student ID: 456789
-  - 🧑‍🎓 Member 5 - 📧 member4@example.com - 🎓 Student ID: 456789
+## ▶️ How to Run
+1. Install dependencies:  
+   ```bash
+   pip install numpy matplotlib
+   ```
+2. Run the script:  
+   ```bash
+   python test.py
+   ```
 
-### 🔮 Future Work
-
-- 🚀 Implement and test the **Best Fit Algorithm**
-- 🤖 Develop an **RL-based model** to improve efficiency
-- 📊 Compare different approaches and evaluate performance
-
-### 📜 License
-
-This project is for educational purposes and follows an open-source license.
-
----
-
-📚 *Capstone Project for REL301M - Reinforcement Learning Course.*
+🚀 **Optimize your material usage and reduce waste with heuristics!**
 
