@@ -21,7 +21,7 @@ We have implemented various algorithms to tackle this problem, including:
 ### 👥 Contributors
 
 - **Group 2 Members**
-  - 🧑‍🎓 Member 1 - 📧 member1@example.com - 🎓 Student ID: 123456
+  - 🧑‍🎓 Nguyễn lê Quốc Việt - 📧 vietnlqqe170144@fpt.edu.vn - 🎓 Student ID: QE170144
   - 🧑‍🎓 Lê Văn Chương - 📧 chuonglvqe170039@fpt.edu.vn - 🎓 Student ID: QE170039
   - 🧑‍🎓 Nguyễn Ngọc Phúc - 📧 phucnnqe170087@fpt.edu.vn - 🎓 Student ID: QE170087
   - 🧑‍🎓 Member 4 - 📧 member4@example.com - 🎓 Student ID: 456789
