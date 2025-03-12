@@ -2,65 +2,69 @@ import numpy as np
 
 def greedy_policy(observation, info):
     """
-    Thuật toán Greedy cho bài toán 2D Cutting Stock:
-    - Xếp sản phẩm vào stock đầu tiên có đủ chỗ trống.
-    - Nếu không có stock phù hợp, tạo một stock mới.
-    - Ưu tiên đặt sản phẩm lớn trước để tối ưu không gian.
+    Cải tiến thuật toán Greedy cho bài toán 2D Cutting Stock:
+    - Ưu tiên đặt sản phẩm vào stock có diện tích trống gần nhất với kích thước sản phẩm.
+    - Nếu không có stock phù hợp, tạo một stock mới với kích thước linh hoạt.
+    - Tránh lãng phí không gian bằng cách kiểm tra kỹ các vị trí trước khi đặt.
     """
+    
+    # Sắp xếp sản phẩm theo diện tích giảm dần để đặt sản phẩm lớn trước
     list_prods = sorted(observation["products"], key=lambda p: p["size"][0] * p["size"][1], reverse=True)
     list_stocks = observation["stocks"]
-    
     actions = []  # Danh sách các hành động đặt sản phẩm
 
     for prod in list_prods:
-        while prod["quantity"] > 0:  # Đặt hết tất cả sản phẩm cùng loại
-            prod_w, prod_h = prod["size"]
-            placed = False
-
+        prod_w, prod_h = prod["size"]
+        quantity = prod["quantity"]
+        
+        for _ in range(quantity):
+            best_stock_idx = None
+            best_pos = None
+            min_waste = float("inf")
+            
+            # Tìm stock phù hợp nhất
             for idx, stock in enumerate(list_stocks):
-                stock_h, stock_w = stock.shape  # Kích thước của kho hàng
+                stock_w, stock_h = stock["width"], stock["height"]  # Sửa lỗi shape
+                stock_matrix = stock["matrix"]
 
-                # Kiểm tra xem stock có đủ chỗ không
                 if stock_h < prod_h or stock_w < prod_w:
-                    continue  # Kho quá nhỏ -> bỏ qua
+                    continue  # Nếu stock không đủ lớn, bỏ qua
 
-                # Duyệt từng vị trí có thể đặt
-                for x in range(stock_h - prod_h + 1):
-                    for y in range(stock_w - prod_w + 1):
-                        if np.all(stock[x:x + prod_h, y:y + prod_w] == -1):
-                            #  Đặt sản phẩm vào stock (đánh dấu bằng ID sản phẩm)
-                            stock[x:x + prod_h, y:y + prod_w] = prod["id"]
+                for y in range(stock_h - prod_h + 1):
+                    for x in range(stock_w - prod_w + 1):
+                        if np.all(stock_matrix[x:x + prod_h, y:y + prod_w] == -1):
+                            waste = np.sum(stock_matrix == -1) - (prod_w * prod_h)
+                            if waste < min_waste:
+                                best_stock_idx = idx
+                                best_pos = (x, y)
+                                min_waste = waste
 
-                            # Lưu hành động
-                            actions.append({
-                                "stock_idx": idx,
-                                "size": (prod_w, prod_h),
-                                "position": (x, y),
-                                "product_id": prod["id"]
-                            })
-
-                            prod["quantity"] -= 1  # Giảm số lượng sản phẩm
-                            placed = True
-                            break
-                    if placed:
-                        break
-
-            # Nếu không tìm thấy chỗ đặt, mở stock mới
-            if not placed:
+            if best_stock_idx is not None:
+                # Đặt sản phẩm vào vị trí tối ưu
+                x, y = best_pos
+                list_stocks[best_stock_idx]["matrix"][x:x + prod_h, y:y + prod_w] = prod["id"]
+                actions.append({
+                    "stock_idx": best_stock_idx,
+                    "size": (prod_w, prod_h),
+                    "position": (x, y),
+                    "product_id": prod["id"]
+                })
+            else:
+                # Nếu không có stock phù hợp, tạo kho mới
+                new_stock = {
+                    "width": max(prod_w, 10),
+                    "height": max(prod_h, 10),
+                    "matrix": np.full((max(prod_w, 10), max(prod_h, 10)), -1)
+                }
+                new_stock["matrix"][0:prod_h, 0:prod_w] = prod["id"]
                 new_stock_idx = len(list_stocks)
-                new_stock = np.full((6, 6), -1)  # Tạo kho mới (kích thước mặc định 6x6)
                 list_stocks.append(new_stock)
-
-                # Đặt sản phẩm vào kho mới
-                new_stock[0:prod_h, 0:prod_w] = prod["id"]
-
                 actions.append({
                     "stock_idx": new_stock_idx,
                     "size": (prod_w, prod_h),
                     "position": (0, 0),
-                    "product_id": prod["id"]
+                    "product_id": prod["id"],
+                    "new_stock": True
                 })
-
-                prod["quantity"] -= 1  # Giảm số lượng sản phẩm
     
-    return actions  
+    return list_stocks, actions

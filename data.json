@@ -1,0 +1,61 @@
+{
+    "stock_sheets": [
+        {
+            "id": 1,
+            "length": 120,
+            "width": 60
+        },
+        {
+            "id": 2,
+            "length": 100,
+            "width": 50
+        },
+        {
+            "id": 3,
+            "length": 90,
+            "width": 40
+        },
+        {
+            "id": 4,
+            "length": 80,
+            "width": 30
+        }
+    ],
+    "demand_pieces": [
+        {
+            "id": 1,
+            "length": 50,
+            "width": 30,
+            "quantity": 4
+        },
+        {
+            "id": 2,
+            "length": 40,
+            "width": 20,
+            "quantity": 6
+        },
+        {
+            "id": 3,
+            "length": 60,
+            "width": 50,
+            "quantity": 2
+        },
+        {
+            "id": 4,
+            "length": 30,
+            "width": 20,
+            "quantity": 8
+        },
+        {
+            "id": 5,
+            "length": 70,
+            "width": 40,
+            "quantity": 3
+        }
+    ],
+    "constraints": {
+        "cut_from_edges_only": true,
+        "no_overlap": true,
+        "stay_within_stock": true
+    }
+}

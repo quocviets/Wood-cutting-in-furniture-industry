@@ -1,49 +1,54 @@
 import numpy as np
 
 def first_fit_policy(observation, info):
-    """
-    First-Fit Algorithm for 2D Cutting Stock Problem
-    - Duyệt qua từng sản phẩm và đặt vào stock đầu tiên có thể chứa nó.
-    - Nếu không tìm thấy stock phù hợp, mở một stock mới.
-    """
-    list_prods = sorted(
-        observation["products"], key=lambda x: x["size"][0] * x["size"][1], reverse=True
-    )
-    
-    list_stocks = sorted(
-        enumerate(observation["stocks"]),
-        key=lambda x: np.sum(x[1] != -2),  # Đếm số ô khả dụng trong stock
-        reverse=True
-    )
-    
-    for prod in list_prods:
+    """First-Fit Algorithm for 2D Cutting-Stock Problem with step tracking."""
+    products = sorted(observation["products"], key=lambda x: x["size"], reverse=True)
+    stocks = observation["stocks"]
+    steps = []
+
+    for prod in products:
         prod_w, prod_h = prod["size"]
-        
-        for _ in range(prod["quantity"]):  # Đặt từng sản phẩm
-            placed = False  # Đánh dấu xem sản phẩm có được đặt không
-            
-            for idx, stock in list_stocks:
-                stock_w, stock_h = stock.shape
+        for _ in range(prod["quantity"]):
+            placed = False
+
+            for idx, stock in enumerate(stocks):
+                stock_w, stock_h = stock["width"], stock["height"]  # Sửa lỗi shape
+                stock_matrix = stock["matrix"]
 
                 if stock_w < prod_w or stock_h < prod_h:
-                    continue  # Nếu stock không đủ lớn, bỏ qua
-                
+                    continue
+
                 for x in range(stock_w - prod_w + 1):
                     for y in range(stock_h - prod_h + 1):
-                        if np.all(stock[x:x + prod_w, y:y + prod_h] == -1):
-                            stock[x:x + prod_w, y:y + prod_h] = prod["id"]  
+                        if np.all(stock_matrix[x:x + prod_w, y:y + prod_h] == -1):
+                            stock_matrix[x:x + prod_w, y:y + prod_h] = prod["id"]
                             placed = True
+                            steps.append({
+                                "product_id": prod["id"],
+                                "stock_idx": idx,
+                                "position": (x, y),
+                                "size": (prod_w, prod_h)
+                            })
                             break
                     if placed:
                         break
-                
                 if placed:
-                    break  # Nếu đã đặt sản phẩm, thoát vòng lặp stock
+                    break
 
             if not placed:
-                # Nếu không tìm thấy vị trí, tạo kho mới
-                new_stock = np.full((max(prod_w, 5), max(prod_h, 5)), -1)  # Kho mới có kích thước tối thiểu
-                new_stock[0:prod_w, 0:prod_h] = prod["id"]
-                observation["stocks"].append(new_stock)
-    
-    return observation["stocks"]  # Trả về danh sách kho sau khi cập nhật
+                new_stock = {
+                    "width": max(prod_w, 10),
+                    "height": max(prod_h, 10),
+                    "matrix": np.full((max(prod_w, 10), max(prod_h, 10)), -1)
+                }
+                new_stock["matrix"][0:prod_w, 0:prod_h] = prod["id"]
+                stocks.append(new_stock)
+                steps.append({
+                    "product_id": prod["id"],
+                    "stock_idx": len(stocks) - 1,
+                    "position": (0, 0),
+                    "size": (prod_w, prod_h),
+                    "new_stock": True
+                })
+
+    return stocks, steps
