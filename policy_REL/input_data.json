@@ -1,0 +1,15 @@
+{
+    "products": [
+        {"size": [3, 5], "quantity": 4, "id": 1},
+        {"size": [2, 4], "quantity": 6, "id": 2},
+        {"size": [5, 6], "quantity": 2, "id": 3},
+        {"size": [2, 3], "quantity": 8, "id": 4},
+        {"size": [4, 7], "quantity": 3, "id": 5}
+    ],
+    "stocks": [
+        {"size": [6, 12], "id": 1},
+        {"size": [5, 10], "id": 2},
+        {"size": [4, 9], "id": 3},
+        {"size": [3, 8], "id": 4}
+    ]
+}
