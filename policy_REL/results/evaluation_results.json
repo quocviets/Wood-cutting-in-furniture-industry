@@ -1,0 +1,77 @@
+{
+    "first_fit": {
+        "total_stocks": 10,
+        "total_area": 416,
+        "used_area": 300,
+        "wasted_area": 116,
+        "utilization_rate": 72.11538461538461,
+        "stock_utilization": [
+            83.33333333333334,
+            64.0,
+            94.44444444444444,
+            50.0,
+            83.33333333333334,
+            83.33333333333334,
+            50.0,
+            66.66666666666666,
+            66.66666666666666,
+            66.66666666666666
+        ],
+        "utilization_std": 14.117601307115411,
+        "fragmentation_count": 10,
+        "fragmentation_rate": 1.0,
+        "min_utilization": 50.0,
+        "max_utilization": 94.44444444444444,
+        "product_dispersion": 2.2
+    },
+    "best_fit": {
+        "total_stocks": 10,
+        "total_area": 416,
+        "used_area": 300,
+        "wasted_area": 116,
+        "utilization_rate": 72.11538461538461,
+        "stock_utilization": [
+            81.94444444444444,
+            64.0,
+            88.88888888888889,
+            87.5,
+            83.33333333333334,
+            83.33333333333334,
+            33.33333333333333,
+            66.66666666666666,
+            66.66666666666666,
+            66.66666666666666
+        ],
+        "utilization_std": 15.890769119519566,
+        "fragmentation_count": 11,
+        "fragmentation_rate": 1.1,
+        "min_utilization": 33.33333333333333,
+        "max_utilization": 88.88888888888889,
+        "product_dispersion": 2.8
+    },
+    "greedy": {
+        "total_stocks": 9,
+        "total_area": 362,
+        "used_area": 288,
+        "wasted_area": 74,
+        "utilization_rate": 79.55801104972376,
+        "stock_utilization": [
+            94.44444444444444,
+            90.0,
+            72.22222222222221,
+            100.0,
+            88.88888888888889,
+            88.88888888888889,
+            88.88888888888889,
+            63.888888888888886,
+            16.666666666666664
+        ],
+        "utilization_std": 24.147718948949056,
+        "fragmentation_count": 8,
+        "fragmentation_rate": 0.8888888888888888,
+        "min_utilization": 16.666666666666664,
+        "max_utilization": 100.0,
+        "product_dispersion": 3.0
+    },
+    "timestamp": "2025-03-22 17:19:26"
+}

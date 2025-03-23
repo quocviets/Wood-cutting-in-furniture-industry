@@ -1,11 +1,14 @@
+# main.py
+
 import numpy as np
 import json
 import datetime
+import time
 from policy.BestFit import best_fit_policy
 from policy.FirstFit import first_fit_policy
 from policy.Greedy import greedy_policy
-from evaluate import evaluate_solution ,print_evaluation ,compare_algorithms
-from visual import visualize_comparison ,visualize_stock_heatmap ,visualize_stocks
+from utils.evaluate import evaluate_solution, print_evaluation, compare_algorithms
+from utils.visual import visualize_comparison, visualize_stock_heatmap, visualize_stocks, create_radar_chart
 
 def load_data(filepath):
     """
@@ -27,48 +30,76 @@ def load_data(filepath):
     
     return observation, {}
 
+def run_algorithm(algorithm_func, algorithm_name, observation, info):
+    """
+    Run algorithm and measure runtime
+    """
+    print(f"\nRunning {algorithm_name} algorithm...")
+    start_time = time.time()
+    actions = algorithm_func(observation, info)
+    end_time = time.time()
+    runtime = end_time - start_time
+    
+    # Evaluate solution
+    metrics = evaluate_solution(observation, runtime)
+    print_evaluation(metrics, algorithm_name)
+    
+    return metrics
+
 def main():
+    # Create results directory if it doesn't exist
+    import os
+    os.makedirs("results", exist_ok=True)
+    
     # Load data from JSON file
-    observation_ff, info_ff = load_data("policy_REL\input_data.json")
-    observation_bf, info_bf = load_data("policy_REL\input_data.json")
-    observation_greedy, info_greedy = load_data("policy_REL\input_data.json")
-
-    # Run algorithms
-    print("Running First-Fit algorithm...")
-    first_fit_actions = first_fit_policy(observation_ff, info_ff)  
+    input_file = "policy_REL\data\data_1.json"
+    print(f"Loading data from {input_file}...")
+    
+    try:
+        observation_ff, info_ff = load_data(input_file)
+        observation_bf, info_bf = load_data(input_file)
+        observation_greedy, info_greedy = load_data(input_file)
+    except FileNotFoundError:
+        print(f"Error: Input file '{input_file}' not found.")
+        print("Please check the file path and try again.")
+        return
+    except json.JSONDecodeError:
+        print("Error: Invalid JSON format in input file.")
+        return
+    
+    # Run each algorithm and collect metrics
+    ff_metrics = run_algorithm(first_fit_policy, "First-Fit", observation_ff, info_ff)
     visualize_stocks(observation_ff["stocks"], "First-Fit Algorithm")
-    ff_metrics = evaluate_solution(observation_ff)
-    print_evaluation(ff_metrics, "First-Fit")
-
-    print("\nRunning Best-Fit algorithm...")
-    best_fit_actions = best_fit_policy(observation_bf, info_bf)  
+    
+    bf_metrics = run_algorithm(best_fit_policy, "Best-Fit", observation_bf, info_bf)
     visualize_stocks(observation_bf["stocks"], "Best-Fit Algorithm")
-    bf_metrics = evaluate_solution(observation_bf)
-    print_evaluation(bf_metrics, "Best-Fit")
-
-    print("\nRunning Greedy algorithm...")
-    greedy_actions = greedy_policy(observation_greedy, info_greedy)
+    
+    greedy_metrics = run_algorithm(greedy_policy, "Greedy", observation_greedy, info_greedy)
     visualize_stocks(observation_greedy["stocks"], "Greedy Algorithm")
-    greedy_metrics = evaluate_solution(observation_greedy)
-    print_evaluation(greedy_metrics, "Greedy")
     
     # Compare algorithms
     compare_algorithms(ff_metrics, bf_metrics, greedy_metrics)
 
     # Create comparison charts
+    print("\nGenerating comparison visualizations...")
     visualize_comparison(ff_metrics, bf_metrics, greedy_metrics)
+    create_radar_chart(ff_metrics, bf_metrics, greedy_metrics)
+    
+    # Find best algorithm based on fitness score
+    algorithms = [
+        ("First-Fit", ff_metrics, observation_ff["stocks"]),
+        ("Best-Fit", bf_metrics, observation_bf["stocks"]),
+        ("Greedy", greedy_metrics, observation_greedy["stocks"])
+    ]
+    
+    best_algorithm, best_metrics, best_stocks = max(
+        algorithms, 
+        key=lambda x: x[1]['fitness_score']
+    )
+    
+    print(f"\nBest algorithm based on fitness score: {best_algorithm} ({best_metrics['fitness_score']:.2f}/100)")
     
     # Display heatmap for best result
-    best_algorithm = "First-Fit"
-    best_stocks = observation_ff["stocks"]
-    
-    if bf_metrics['utilization_rate'] > ff_metrics['utilization_rate'] and bf_metrics['utilization_rate'] > greedy_metrics['utilization_rate']:
-        best_algorithm = "Best-Fit"
-        best_stocks = observation_bf["stocks"]
-    elif greedy_metrics['utilization_rate'] > ff_metrics['utilization_rate'] and greedy_metrics['utilization_rate'] > bf_metrics['utilization_rate']:
-        best_algorithm = "Greedy"
-        best_stocks = observation_greedy["stocks"]
-    
     print(f"\nDisplaying heatmap for best algorithm ({best_algorithm}):")
     for i, stock in enumerate(best_stocks):
         visualize_stock_heatmap(stock, f"{best_algorithm} - Stock {i} Heatmap")
@@ -100,6 +131,8 @@ def save_results(ff_metrics, bf_metrics, greedy_metrics):
     bf_metrics_converted = convert_numpy_types(bf_metrics)
     greedy_metrics_converted = convert_numpy_types(greedy_metrics)
     
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    
     results = {
         "first_fit": ff_metrics_converted,
         "best_fit": bf_metrics_converted,
@@ -107,9 +140,22 @@ def save_results(ff_metrics, bf_metrics, greedy_metrics):
         "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     
+    # Save to results directory with timestamp
+    results_file = f"results/evaluation_results_{timestamp}.json"
+    
+    with open(results_file, "w") as f:
+        json.dump(results, f, indent=4)
+    
+    # Also save to standard location for backward compatibility
     with open("evaluation_results.json", "w") as f:
         json.dump(results, f, indent=4)
     
-    print("\nEvaluation results saved to 'evaluation_results.json'")
+    print(f"\nEvaluation results saved to '{results_file}' and 'evaluation_results.json'")
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"Error during execution: {e}")
+        import traceback
+        traceback.print_exc()
