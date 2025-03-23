@@ -2,6 +2,7 @@ import numpy as np
 import json
 import matplotlib.pyplot as plt
 from prettytable import PrettyTable
+import time
 
 def greedy_policy(observation, info):
     """
@@ -99,20 +100,38 @@ def plot_stocks(list_stocks):
 
 def print_waste_summary(summary):
     table = PrettyTable()
-    table.field_names = ["Stock ID", "Total Area", "Used Area", "Waste Area"]
+    table.field_names = ["Stock ID", "Total Area", "Used Area", "Waste Area", "Waste Rate"]
     
     total_waste = 0
+    total_area = 0
     for item in summary:
-        table.add_row([item["Stock Index"], item["Total Area"], item["Used Area"], item["Waste Area"]])
+        waste_rate = item["Waste Area"] / item["Total Area"] if item["Total Area"] != 0 else 0
+        table.add_row([item["Stock Index"], item["Total Area"], item["Used Area"], item["Waste Area"], f"{waste_rate:.4f}"])
         total_waste += item["Waste Area"]
+        total_area += item["Total Area"]
     
     print("Waste Summary:")
     print(table)
     print(f"Total Waste Area: {total_waste} square units")
+    print(f"Total Waste Rate: {total_waste / total_area:.4f}")
+
+def calculate_fitness(summary):
+    total_area = sum(item["Total Area"] for item in summary)
+    used_area = sum(item["Used Area"] for item in summary)
+    waste_area = total_area - used_area
+    utilization_rate = used_area / total_area if total_area != 0 else 0
+
+    fitness_score = utilization_rate / len(summary) if len(summary) != 0 else 0
+
+    print(f"\nFitness Score: {fitness_score:.4f}")
+    print(f"Utilization Rate: {utilization_rate:.4f}")
+    print(f"Total Stocks Used: {len(summary)}")
 
 def main():
+    start_time = time.time()
+
     # Đọc dữ liệu từ file JSON
-    with open("TH_Hoang_greedy/results_Heuristic_Algorithms\data_input\data_4.json", "r") as file:
+    with open("TH_Hoang_greedy/results_Heuristic_Algorithms/data_input/data_3.json", "r") as file:
         data = json.load(file)
 
     # Chuyển đổi dữ liệu thành dạng quan sát
@@ -132,6 +151,10 @@ def main():
 
     summary = calculate_waste_summary(observation["stocks"], observation["products"])
     print_waste_summary(summary)
+    calculate_fitness(summary)
+
+    end_time = time.time()
+    print(f"Runtime: {end_time - start_time:.4f} seconds")
 
 if __name__ == "__main__":
     main()
