@@ -1,6 +1,7 @@
 import numpy as np
 import json
 import matplotlib.pyplot as plt
+from prettytable import PrettyTable
 
 def greedy_policy(observation, info):
     """
@@ -67,6 +68,21 @@ def greedy_policy(observation, info):
     
     return actions
 
+def calculate_waste_summary(list_stocks, products):
+    summary = []
+    for idx, stock in enumerate(list_stocks):
+        total_area = stock.shape[0] * stock.shape[1]
+        used_area = np.sum(stock != -1)
+        waste_area = total_area - used_area
+
+        summary.append({
+            "Stock Index": idx + 1,
+            "Total Area": total_area,
+            "Used Area": used_area,
+            "Waste Area": waste_area
+        })
+
+    return summary
 
 def plot_stocks(list_stocks):
     fig, axes = plt.subplots(1, len(list_stocks), figsize=(5 * len(list_stocks), 5))
@@ -81,10 +97,22 @@ def plot_stocks(list_stocks):
     plt.tight_layout()
     plt.show()
 
+def print_waste_summary(summary):
+    table = PrettyTable()
+    table.field_names = ["Stock ID", "Total Area", "Used Area", "Waste Area"]
+    
+    total_waste = 0
+    for item in summary:
+        table.add_row([item["Stock Index"], item["Total Area"], item["Used Area"], item["Waste Area"]])
+        total_waste += item["Waste Area"]
+    
+    print("Waste Summary:")
+    print(table)
+    print(f"Total Waste Area: {total_waste} square units")
 
 def main():
     # Đọc dữ liệu từ file JSON
-    with open("policy_REL/data/data_1.json", "r") as file:
+    with open("TH_Hoang_greedy/results_Heuristic_Algorithms\data_input\data_4.json", "r") as file:
         data = json.load(file)
 
     # Chuyển đổi dữ liệu thành dạng quan sát
@@ -102,6 +130,8 @@ def main():
 
     plot_stocks(observation["stocks"])
 
+    summary = calculate_waste_summary(observation["stocks"], observation["products"])
+    print_waste_summary(summary)
 
 if __name__ == "__main__":
     main()
