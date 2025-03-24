@@ -97,6 +97,8 @@ python combination.py      #To run Combination_Heuristic
 |       └──📄 data.json                   #Data for First_Fit and Best_Fit Implementation
 |   └──📁 Combination                     
 |       └──📄 combination_data.json       #Data for BenchMark Combination Heuristic algorithm
+│──📄 compare.py                          #Compare two algorithms First Fit and Best Fit
+│──📄 compare.png                         #Comparison Visualization
 │── 📄 README.md                # Project documentation
 ```
 
