@@ -24,8 +24,8 @@ We have implemented various algorithms to tackle this problem, including:
   - 🧑‍🎓 Nguyễn lê Quốc Việt - 📧 vietnlqqe170144@fpt.edu.vn - 🎓 Student ID: QE170144
   - 🧑‍🎓 Lê Văn Chương - 📧 chuonglvqe170039@fpt.edu.vn - 🎓 Student ID: QE170039
   - 🧑‍🎓 Nguyễn Ngọc Phúc - 📧 phucnnqe170087@fpt.edu.vn - 🎓 Student ID: QE170087
-  - 🧑‍🎓 Member 4 - 📧 member4@example.com - 🎓 Student ID: 456789
-  - 🧑‍🎓 Member 5 - 📧 member4@example.com - 🎓 Student ID: 456789
+  - 🧑‍🎓 Lê Quốc Việt - 📧 VietLQSE173577@fpt.edu.vn - 🎓 Student ID: SE173577
+  - 🧑‍🎓 Trần Hữu Hoàng - 📧 HoangTHQE170011@fpt.edu.vn - 🎓 Student ID: QE170011
 
 ### 🔮 Future Work
 
