@@ -83,11 +83,17 @@ Based on the implementation and training process in the provided code, the follo
 - **Memory and Computational Overhead:**  
   The use of a replay buffer and target network introduces additional memory and computational overhead, which can slow down training and inference, especially for large-scale problems.
 
+### Training Outputs
+
+- Trained DQN models are stored in google drive, please refer the README file in `models/` directory for detail about downloading the final trained model.
+- Training plots saved in `result/`, tracking agent performance over episodes.
+
 ### Project Structure
 ```
 VietLQ_SE173577_submit_code    
 ├── deep_q_network_approach             
-│   ├── README              
+│   ├── README            # Provided detail about the concept of implementing the agent     
+│   ├── requirements      # Required package for running the code        
 │   ├── agent.py          # Code for setup the deep-q-network agent             
 │   ├── environment.py    # Code for setup the environment             
 │   ├── main.py           # Main code for training the agent in cli   
@@ -97,3 +103,30 @@ VietLQ_SE173577_submit_code
 │   ├── result                    
 │   │   ├── dqn_training_result.png    # Visualize the training result
 ```
+
+### Get Started
+#### **Step 1: Set Up Virtual Environment & Install Dependencies**
+
+- Create a new virtual environment (or use an existing one).
+    
+- Install the required packages by running:
+    
+```bash
+    pip install -r requirements.txt
+```
+
+#### **Step 2: Download the Trained Model**
+
+- Download the pre-trained model from:  
+    🔗 [Google Drive Link](https://drive.google.com/file/d/1jSqHK3YyNICuC3Yg2XDXSVI2-OwDkLhP/view?usp=drive_link)
+    - The downloaded file will be named `dqn_wood_cutting_final.pth`.
+
+#### **Step 3: Place the Model in the Correct Directory**
+
+- Move the downloaded model file (`dqn_wood_cutting_final.pth`) into the `models/` folder.
+    - Create the folder if it doesn’t exist.
+
+#### **Step 4: Test on a Custom Order**
+
+- Run the Jupyter notebook `test_on_custom_order.ipynb` to evaluate the model on a specific customer order,where you can define the wood pieces to be cut from the sheet. You can check the notebook [here](test_on_custom_order.ipynb)
+    
