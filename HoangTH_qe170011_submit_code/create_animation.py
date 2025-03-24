@@ -485,7 +485,7 @@ def run_all_algorithms(data_file):
 
 if __name__ == "__main__":
     # Để chạy từ file dữ liệu của bạn, đổi đường dẫn này:
-    data_file = "policy_REL/data/data_2.json"
+    data_file = "HoangTH_qe170011_submit_code\data\data_1.json"
     
     try:
         run_all_algorithms(data_file)
@@ -493,38 +493,3 @@ if __name__ == "__main__":
         print(f"Error: Input file '{data_file}' not found.")
         print("Looking for alternative data file...")
         
-        # Thử tạo dữ liệu mẫu nếu không tìm thấy file
-        try:
-            # Tạo thư mục nếu chưa tồn tại
-            os.makedirs("sample_data", exist_ok=True)
-            
-            # Tạo dữ liệu mẫu
-            sample_data = {
-                "products": [
-                    {"id": 0, "size": [2, 3], "quantity": 3},
-                    {"id": 1, "size": [1, 2], "quantity": 4},
-                    {"id": 2, "size": [3, 2], "quantity": 2}
-                ],
-                "stocks": [
-                    {"size": [6, 6]}
-                ]
-            }
-            
-            # Lưu dữ liệu mẫu
-            sample_file = "sample_data/sample_data.json"
-            with open(sample_file, 'w') as f:
-                json.dump(sample_data, f, indent=4)
-            
-            print(f"Created sample data file: {sample_file}")
-            print("Running algorithms with sample data...")
-            
-            run_all_algorithms(sample_file)
-            
-        except Exception as e:
-            print(f"Error creating sample data: {e}")
-            import traceback
-            traceback.print_exc()
-    except Exception as e:
-        print(f"Error during execution: {e}")
-        import traceback
-        traceback.print_exc()

@@ -4,6 +4,8 @@ import numpy as np
 import json
 import datetime
 import time
+import os
+import matplotlib.pyplot as plt
 from policy.BestFit import best_fit_policy
 from policy.FirstFit import first_fit_policy
 from policy.Greedy import greedy_policy
@@ -48,11 +50,24 @@ def run_algorithm(algorithm_func, algorithm_name, observation, info):
 
 def main():
     # Create results directory if it doesn't exist
-    import os
-    os.makedirs("results", exist_ok=True)
+    results_dir = "HoangTH_qe170011_submit_code/results"
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # Change the default save location for matplotlib figures
+    original_savefig = plt.savefig
+    
+    def custom_savefig(fname, *args, **kwargs):
+        # Extracting just the filename without path
+        base_filename = os.path.basename(fname)
+        # Joining with our desired output directory
+        new_path = os.path.join(results_dir, base_filename)
+        return original_savefig(new_path, *args, **kwargs)
+    
+    # Override plt.savefig with our custom function
+    plt.savefig = custom_savefig
     
     # Load data from JSON file
-    input_file = "policy_REL\data\data_1.json"
+    input_file = "HoangTH_qe170011_submit_code/data/data_4.json"
     print(f"Loading data from {input_file}...")
     
     try:
@@ -104,10 +119,13 @@ def main():
     for i, stock in enumerate(best_stocks):
         visualize_stock_heatmap(stock, f"{best_algorithm} - Stock {i} Heatmap")
     
+    # Restore original savefig function
+    plt.savefig = original_savefig
+    
     # Save results to file
-    save_results(ff_metrics, bf_metrics, greedy_metrics)
+    save_results(ff_metrics, bf_metrics, greedy_metrics, results_dir)
 
-def save_results(ff_metrics, bf_metrics, greedy_metrics):
+def save_results(ff_metrics, bf_metrics, greedy_metrics, output_dir):
     """
     Save evaluation results to JSON file with NumPy type conversion
     """
@@ -141,16 +159,12 @@ def save_results(ff_metrics, bf_metrics, greedy_metrics):
     }
     
     # Save to results directory with timestamp
-    results_file = f"results/evaluation_results_{timestamp}.json"
+    results_file = os.path.join(output_dir, f"evaluation_results_{timestamp}.json")
     
     with open(results_file, "w") as f:
         json.dump(results, f, indent=4)
     
-    # Also save to standard location for backward compatibility
-    with open("evaluation_results.json", "w") as f:
-        json.dump(results, f, indent=4)
-    
-    print(f"\nEvaluation results saved to '{results_file}' and 'evaluation_results.json'")
+    print(f"\nEvaluation results saved to '{results_file}'")
 
 if __name__ == "__main__":
     try:
