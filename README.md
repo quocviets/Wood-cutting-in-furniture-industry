@@ -29,7 +29,7 @@ We have implemented various algorithms to tackle this problem, including:
 
 ### 🔮 Future Work
 
-- 🚀 Implement and test the **Best Fit Algorithm**
+- 🚀 Implement and test the **Heuristic Algorithm**
 - 🤖 Develop an **RL-based model** to improve efficiency
 - 📊 Compare different approaches and evaluate performance
 
