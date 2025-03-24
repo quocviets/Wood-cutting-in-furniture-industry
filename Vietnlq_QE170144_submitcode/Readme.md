@@ -115,12 +115,12 @@ Where:
 
 Example:
 ```markdown
-![Q-learning Result](results/q_learning_order_001_animation.gif)
+![Q-learning Result](Q_learning_resuilt/q_learning_order_002_animation.gif)
 ```
 
 ### 🌀 Q-Learning Visualization Example
 
-![Q-Learning Cutting Demo](results/q_learning_order_001_animation.gif)
+![Q-Learning Cutting Demo](Q_learning_resuilt/q_learning_order_001_animation.gif)
 
 
 ---
