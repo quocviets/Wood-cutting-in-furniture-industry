@@ -162,7 +162,7 @@ Faculty of Information Technology – Mini Capstone Project – Mar 2025
 
 - Nguyễn Lê Quốc Việt – QE170144(Leader)
 - Lê Quốc Việt – SE173577 
-- Lê Văn Chương – SE173018  
+- Lê Văn Chương – QE170039  
 - Trần Hữu Hoàng – QE170011 
 - Nguyễn Ngọc Phúc – QE170087 
 
