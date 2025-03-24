@@ -19,7 +19,7 @@ PPO employs Generalized Advantage Estimation (GAE) to compute advantages, uses a
 
 - **MLP for Encoding Product Information**
   - A **Multi-Layer Perceptron (MLP)** encodes the remaining order information:
-    - The order is represented as an array of size $\text{max\_order\_types} \times 3$, where each row contains the width, height, and quantity of a piece type.
+    - The order is represented as an array of size max_order_types $\times 3$, where each row contains the width, height, and quantity of a piece type.
     - This array is flattened and passed through a fully connected layer (`fc_order`) to produce a 128-dimensional embedding.
   - Another MLP encodes the current platform index:
     - The platform index is passed through a fully connected layer (`fc_platform`) to produce a 32-dimensional embedding.
@@ -44,7 +44,7 @@ PPO employs Generalized Advantage Estimation (GAE) to compute advantages, uses a
 
 - **Action Selection and Masking**
   - During action selection, invalid piece types (those with zero remaining quantity) are masked by setting their logits to $-\infty$, ensuring the agent only selects valid pieces.
-  - The total action log probability is computed as the sum of the log probabilities of the individual action components ($x$, $y$, $\text{piece\_type}$, and $\text{rotation}$).
+  - The total action log probability is computed as the sum of the log probabilities of the individual action components ($x$, $y$,  piece_type, and $\text{rotation}$).
 
 - **Training Process**
   - The agent uses Proximal Policy Optimization (PPO) to update the policy:
@@ -71,13 +71,11 @@ The reward function is designed to optimize the wood-cutting process by encourag
 
 - **Efficiency Bonus (End of Episode):**  
   At the end of an episode (when all pieces are placed), the agent receives an additional reward based on the overall efficiency:
-  $$
-  \text{Efficiency Bonus} = \text{efficiency} \times 1000
-  $$
+
+  $$\text{Efficiency Bonus} = \text{efficiency} \times 1000$$
+  
   Where:
-  $$
-  \text{efficiency} = \frac{\text{Total Filled Area}}{\text{Total Platform Area Used}}
-  $$
+  $$\text{efficiency} = \frac{\text{Total Filled Area}}{\text{Total Platform Area Used}}$$
 
 This reward structure aligns with the goals of minimizing platform usage, reducing waste, and maximizing efficiency.
 
@@ -88,7 +86,7 @@ This reward structure aligns with the goals of minimizing platform usage, reduci
 Based on the implementation and training process in the provided code, the following limitations of the PPO approach were observed:
 
 - **Slower Convergence:**  
-  The PPO agent requires multiple episodes and updates to learn optimal policies due to the complexity of the action space (e.g., $x, y, \text{piece\_type}, \text{rotation}$) and the need to balance exploration with exploitation. This can lead to slower convergence compared to heuristic methods.
+  The PPO agent requires multiple episodes and updates to learn optimal policies due to the complexity of the action space (e.g., $x$,$y$, piece_type, $\text{rotation}$) and the need to balance exploration with exploitation. This can lead to slower convergence compared to heuristic methods.
 
 - **Fine-Tuning Sensitivity:**  
   The performance of the PPO agent is sensitive to hyperparameter choices, such as the learning rate ($lr$), entropy coefficient, GAE parameters ($\gamma, \lambda$), and clipping range ($\epsilon$). Suboptimal settings may result in unstable or subpar learning.
