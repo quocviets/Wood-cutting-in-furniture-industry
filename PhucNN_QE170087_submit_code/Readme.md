@@ -49,7 +49,7 @@ The solution applies a combination of heuristic algorithms to optimize the place
 ## 🔧 **Installation & Usage**
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/your_username/Cutting-Stock-Problem.git
+git clone [https://github.com/your_username/Cutting-Stock-Problem.git](https://github.com/quocviets/Wood-cutting-in-furniture-industry/tree/submit_final/PhucNN_QE170087_submit_code)
 cd Cutting-Stock-Problem
 ```
 
