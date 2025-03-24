@@ -50,9 +50,9 @@ The solution applies a combination of heuristic algorithms to optimize the place
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/quocviets/Wood-cutting-in-furniture-industry/tree/submit_final/PhucNN_QE170087_submit_code
-cd Best_Fit  
-cd First_Fit
-cd Combination_Heuristic
+cd Best_Fit               #If you want to run the Best_Fit algorithm
+cd First_Fit              #If you want to run the First_Fit algorithm
+cd Combination_Heuristic  #If you want to run the Combination_Heuristic
 ```
 
 2. **Install dependencies:**
