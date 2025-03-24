@@ -15,13 +15,11 @@
     - **State-Value Stream ($V(s)$):** Estimates the overall value of the state.
     - **Advantage Stream ($A(s, a)$):** Estimates the advantage of each action relative to the average.
   - The Q-values are computed as:
-    $$
-    Q(s, a) = V(s) + \left(A(s, a) - \frac{1}{|A|} \sum_{a'} A(s, a')\right)
-    $$
+    $$Q(s, a) = V(s) + \left(A(s, a) - \frac{1}{|A|} \sum_{a'} A(s, a')\right)$$
     This structure improves learning by decoupling the state value from the action advantages.
 
 - **Action Representation:**
-  - The Q-values are predicted for all possible actions, represented as a tensor of shape $(\text{grid\_size}, \text{grid\_size}, \text{max\_order\_types}, \text{rotations})$.
+  - The Q-values are predicted for all possible actions, represented as a tensor of shape grid_size, grid_size, max_order_types, $\text{rotations}$).
   - Since items are non-rotatable, the rotation dimension is fixed to $0$, simplifying the action space.
 
 - **Action Selection:**
@@ -31,14 +29,10 @@
 - **Training Process:**
   - The agent uses **Double DQN** to reduce overestimation bias:
     - The target Q-value is computed as:
-      $$
-      \text{Target} = r + \gamma \cdot Q_{\text{target}}(s', \arg\max_{a'} Q(s', a'))
-      $$
+      $$\text{Target} = r + \gamma \cdot Q_{\text{target}}(s', \arg\max_{a'} Q(s', a'))$$
     - A target network periodically updates its weights from the main network to stabilize learning.
   - The loss is computed using the **Huber loss** between predicted Q-values and target Q-values:
-    $$
-    \text{Loss} = \text{SmoothL1Loss}(Q(s, a), \text{Target})
-    $$
+    $$\text{Loss} = \text{SmoothL1Loss}(Q(s, a), \text{Target})$$
   - The network is optimized using the Adam optimizer with gradient clipping to prevent exploding gradients.
 
 ---
@@ -62,13 +56,9 @@ The reward function is designed to optimize the wood-cutting process by encourag
 
 - **Efficiency Bonus (End of Episode):**  
   At the end of an episode, the agent receives a bonus based on the overall efficiency:
-  $$
-  \text{Efficiency Bonus} = \text{efficiency} \times 1000
-  $$
+  $$\text{Efficiency Bonus} = \text{efficiency} \times 1000$$
   Where:
-  $$
-  \text{efficiency} = \frac{\text{Total Filled Area}}{\text{Total Platform Area Used}}
-  $$
+  $$\text{efficiency} = \frac{\text{Total Filled Area}}{\text{Total Platform Area Used}}$$
 
 This reward structure encourages high cutting efficiency, penalizes waste, and rewards successful piece placement.
 
