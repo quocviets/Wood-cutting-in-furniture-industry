@@ -17,8 +17,8 @@ Q(s, a) \leftarrow Q(s, a) + \alpha \left[r + \gamma \max_{a'} Q(s', a') - Q(s, 
 $$
 
 Where:
-- \( \alpha \): Learning rate
-- \( \gamma \): Discount factor
+- \( α \): Learning rate
+- \( γ \): Discount factor
 - \( r \): Immediate reward
 - \( s' \): Next state
 - \( a' \): Next action
@@ -106,7 +106,7 @@ Where:
 > Upload your Q-learning cutting result GIFs here:
 
 ```bash
-📁 results/
+📁 Q_learning_results/
 ├── q_learning_order_001_animation.gif
 ├── q_learning_order_002_animation.gif
 ├── q_learning_order_003_animation.gif
@@ -115,12 +115,12 @@ Where:
 
 Example:
 ```markdown
-![Q-learning Result](Q_learning_resuilt/q_learning_order_002_animation.gif)
+![Q-learning Result](Q_learning_results/q_learning_order_002_animation.gif)
 ```
 
 ### 🌀 Q-Learning Visualization Example
 
-![Q-Learning Cutting Demo](Q_learning_resuilt/q_learning_order_001_animation.gif)
+![Q-Learning Cutting Demo](Q_learning_results/q_learning_order_001_animation.gif)
 
 
 ---
