@@ -62,8 +62,10 @@ pip install numpy matplotlib
 
 3. **Run the script:**
 ```bash
-python main.py
-```
+python best-fit.py         #To run Best_Fit algorithm
+python first-fit.py        #To run First_Fit algorithm
+python combination.py      #To run Combination_Heuristic
+``` 
 
 ---
 
