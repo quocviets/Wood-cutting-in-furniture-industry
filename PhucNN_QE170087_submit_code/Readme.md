@@ -33,8 +33,6 @@ The solution applies a combination of heuristic algorithms to optimize the place
    - If FF fails, it searches for the position that minimizes unused space on the stock sheets.  
    - Improves material utilization but requires more computational effort.
 
-3. **Opening New Stock:**  
-   - If no suitable position is found, a new stock sheet is opened to accommodate the remaining pieces.
 
 ---
 
@@ -69,12 +67,28 @@ python main.py
 
 ## 📁 **Project Structure**
 ```
-📂 Cutting-Stock-Problem/
+📂 PhucNN_QE170087_submit_code/
+│──📁 First_Fit/
+|   └──📄 Figure_1.png
+|   └──📄 Figure_2.png
+|   └──📄 Figure_3.png
+|   └──📄 Figure_4.png
+|   └──📄 reward.png
+|   └──📄 summary.png
+|   └──📄 waste-summary.png
+|   └──📄 first-fit.py
+│──📁 Best_Fit/
+|   └──📄 Figure_1.png
+|   └──📄 Figure_2.png
+|   └──📄 Figure_3.png
+|   └──📄 Figure_4.png
+|   └──📄 reward.png
+|   └──📄 summary.png
+|   └──📄 waste-summary.png
+|   └──📄 best-fit.py
+│──📁 Combination_Heuristic/
+|   └──📄 combination.py
 │── 📄 README.md                # Project documentation
-│── 📄 main.py                  # Main Python script for implementation
-│── 📁 data/                    # Sample input data
-│── 📁 results/                 # Output results and performance metrics
-│── 📁 figures/                 # Visual representation of the cutting patterns
 ```
 
 ---
@@ -87,10 +101,10 @@ This benchmark evaluates the performance of the combination heuristic approach u
 
 | Order ID | Stock Count | Waste Rate | Fitness | Runtime (s) |
 |----------|-------------|------------|---------|-------------|
-| Order 001 | 2           | 0.25       | 0.80    | 0.12        |
-| Order 002 | 3           | 0.30       | 0.77    | 0.15        |
-| Order 003 | 3           | 0.22       | 0.82    | 0.14        |
-| Order 004 | 4           | 0.28       | 0.79    | 0.18        |
+| Order 001 | 1           | 0.4286       | 0.7    | 0.3        |
+| Order 002 | 1           | 0.4286       | 0.7    | 0.46        |
+| Order 003 | 2           | 0.7391       | 0.575    | 1.689        |
+| Order 004 | 2           | 0.3333       | 0.75    | 2.938        |
 
 *Note: The results are based on sample orders with predefined piece sizes and quantities.*
 
