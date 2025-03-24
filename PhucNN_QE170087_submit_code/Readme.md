@@ -90,6 +90,11 @@ python main.py
 |   └──📄 best-fit.py
 │──📁 Combination_Heuristic/
 |   └──📄 combination.py
+│──📁 Data/
+|   └──📁 First_fit + Best_Fit
+|       └──📄 data.json                   #Data for First_Fit and Best_Fit Implementation
+|   └──📁 Combination                     
+|       └──📄 combination_data.json       #Data for BenchMark Combination Heuristic algorithm
 │── 📄 README.md                # Project documentation
 ```
 
