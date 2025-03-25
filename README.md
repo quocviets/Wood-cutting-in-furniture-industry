@@ -29,6 +29,20 @@ root
 ├── report
 |   └──Assignment-SE173577_QE170039_QE170144_QE170087_QE170011.pdf
 ```
+
+## 4. Diary 
+
+```
+root
+├── diary.md
+```
+
+## 5. Effort 
+
+```
+root
+├── effort.md
+```
 ## Problem Description: Wood Panel Optimization
 
 In the timber and woodworking industries, large wood panels (stock sheets) need to be cut into smaller rectangular pieces to fulfill customer orders and manufacturing requirements. The core challenge revolves around:
@@ -46,9 +60,9 @@ This project models the wood panel cutting process as a **2D Cutting Stock Probl
 - **Fixed piece orientations:** Pieces cannot be rotated, mirroring real-world limitations in many cutting scenarios.
 ---
 
-## 4. Approaches
+## 6. Approaches
 
-### 4.1 Heuristic Algorithms for Wood Panel Cutting
+### 6.1 Heuristic Algorithms for Wood Panel Cutting
 
 Our team implemented and compared three classic heuristic algorithms specifically adapted for optimizing the cutting of large wood panels (stock sheets) into smaller rectangular pieces to fulfill customer orders and manufacturing requirements:
 
@@ -60,11 +74,11 @@ Our team implemented and compared three classic heuristic algorithms specificall
 |
 ---
 
-### 4.2 Reinforcement Learning for Wood Panel Cutting
+### 6.2 Reinforcement Learning for Wood Panel Cutting
 We implemented a **Proximal Policy Optimization (PPO)**, **Deep-Q-Network** and **Q-Learning** agent using a custom Gym environment to learn cutting strategies over time.
 
-### 4.2.1 PPO Approach
-### 4.2.1.1 PPO Architecture
+### 6.2.1 PPO Approach
+### 6.2.1.1 PPO Architecture
 
 -   **Actor-Critic Model:**
     -   CNN extracts spatial features from the cutting stock.
@@ -82,21 +96,21 @@ We implemented a **Proximal Policy Optimization (PPO)**, **Deep-Q-Network** and 
 Absolutely, let's condense those detailed descriptions into short, impactful summaries:
 
 
-### 4.2.1.2 PPO Reward Function
+### 6.2.1.2 PPO Reward Function
 
 -   Encourages high **cutting efficiency**.
 -   Penalizes **wood waste and excessive panel use**.
 -   Rewards **successful piece placement**.
 
-### 4.2.1.3 PPO Limitations Observed
+### 6.2.1.3 PPO Limitations Observed
 
 -   **Slow learning** compared to heuristics.
 -   **Sensitivity** to hyperparameter tuning.
 -   **Poor performance** on simple cutting tasks.
 
-### 4.2.2 DQN Approach
+### 6.2.2 DQN Approach
 
-#### **4.2.2.1 DQN Architecture**
+#### **6.2.2.1 DQN Architecture**
 
 - **Dueling DQN Model:**
     - CNN extracts spatial features.
@@ -109,20 +123,20 @@ Absolutely, let's condense those detailed descriptions into short, impactful sum
 - **Training:**
     - Double DQN with Huber loss.
 
-#### **4.2.2.2 DQN Reward Function**
+#### **6.2.2.2 DQN Reward Function**
 
 - Encourages high **cutting efficiency**.
 - Penalizes **wood waste and excessive panel use**.
 - Rewards **successful piece placement**.
 
-#### **4.2.2.3 DQN Limitations Observed**
+#### **6.2.2.3 DQN Limitations Observed**
 
 - **Slow learning** compared to heuristics.
 - **Sensitivity** to hyperparameters.
 - **Poor performance** on simple cutting tasks.
 
 
-## 5. Evaluation Metrics
+## 7. Evaluation Metrics
 
 | Metric               | Description                                               |
 |----------------------|-----------------------------------------------------------|
@@ -132,7 +146,7 @@ Absolutely, let's condense those detailed descriptions into short, impactful sum
 
 ---
 ---
-## 6. Results
+## 7. Results
 The application of Q-learning , Proximal Policy Optimization (PPO) , and Deep Q-Networks (DQN) in the 2D Cutting Stock Problem (CSP) demonstrates the potential of Reinforcement Learning (RL) in solving complex combinatorial optimization problems. While traditional heuristic methods such as First-Fit Decreasing (FFD) , Best-Fit , and Greedy algorithms provide fast and relatively efficient solutions, RL approaches like Q-learning, PPO, and DQN offer adaptability and the ability to learn from experience.
 
 Q-learning focuses on learning the optimal action-value function by iteratively updating Q-values based on rewards, enabling the agent to make decisions that balance immediate rewards with long-term goals. 
@@ -142,7 +156,7 @@ Similarly, DQN extends Q-learning by using a neural network to approximate the Q
 On the other hand, PPO leverages policy gradient methods to directly optimize the policy, ensuring stable updates through mechanisms like clipping and incorporating entropy regularization to encourage exploration. Together, these RL approaches provide flexible frameworks for tackling the complexities of the 2D CSP, offering the potential to outperform traditional heuristics in scenarios requiring dynamic decision-making and resource optimization.
 
 
-###  Folder Structure:
+## 8. Folder Structure:
 ```
 ├── _report                 
 │   ├── Assignment-SE173577_QE170039_QE170144_QE170087_QE170011.pdf 
