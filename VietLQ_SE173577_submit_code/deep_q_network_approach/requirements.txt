@@ -1,0 +1,7 @@
+gym
+matplotlib
+numpy
+torch
+scipy
+tqdm
+collections
