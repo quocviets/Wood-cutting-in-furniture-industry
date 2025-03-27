@@ -125,6 +125,14 @@ Example:
 
 ---
 
+---
+
+## 🔄 50 orders Benchmark chart
+![BenchMark_Chart](Q_learning_raw/results/benchmark_chart.png)
+
+
+---
+
 ## 🎉 Conclusion
 
 Q-Learning provides a fast and interpretable method for solving the 2D cutting stock problem. While it may not always outperform heuristics in small test cases, its adaptability makes it suitable for reinforcement learning research, experimentation, and potential integration into hybrid optimization systems.
