@@ -1,0 +1,474 @@
+{
+  "order_id": "order_001",
+  "canvas_size": [100, 100],
+  "items": {
+    "table": { "size": [40, 50], "quantity": 2 },     // 2 * 2000 = 4000
+    "chair": { "size": [20, 25], "quantity": 4 },     // 4 * 500 = 2000
+    "leg":   { "size": [4, 25],  "quantity": 10 }     // 10 * 100 = 1000
+  }
+}
+
+{
+  "order_id": "order_002",
+  "canvas_size": [100, 100],
+  "items": {
+    "table": { "size": [40, 50], "quantity": 1 },     // 1 * 2000 = 2000
+    "chair": { "size": [20, 25], "quantity": 6 },     // 6 * 500 = 3000
+    "leg":   { "size": [4, 25],  "quantity": 20 }     // 20 * 100 = 2000
+  }
+}
+
+{
+  "order_id": "order_003",
+  "canvas_size": [100, 100],
+  "items": {
+    "table": { "size": [40, 50], "quantity": 3 },     // 3 * 2000 = 6000
+    "chair": { "size": [20, 25], "quantity": 6 },     // 6 * 500 = 3000
+    "leg":   { "size": [4, 25],  "quantity": 25 }     // 25 * 100 = 2500
+  }
+}
+
+{
+  "order_id": "order_004",
+  "canvas_size": [100, 100],
+  "items": {
+    "table": { "size": [40, 50], "quantity": 4 },     // 4 * 2000 = 8000
+    "chair": { "size": [20, 25], "quantity": 8 },     // 8 * 500 = 4000
+    "leg":   { "size": [4, 25],  "quantity": 30 }     // 30 * 100 = 3000
+  }
+}
+
+{
+  "order_id": "order_005",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 5},
+    "chair": {"size": [20, 25], "quantity": 10},
+    "leg": {"size": [4, 25], "quantity": 35}
+  }
+}
+
+{
+  "order_id": "order_006",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 6},
+    "chair": {"size": [20, 25], "quantity": 12},
+    "leg": {"size": [4, 25], "quantity": 40}
+  }
+}
+
+{
+  "order_id": "order_007",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 7},
+    "chair": {"size": [20, 25], "quantity": 14},
+    "leg": {"size": [4, 25], "quantity": 45}
+  }
+}
+
+{
+  "order_id": "order_008",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 8},
+    "chair": {"size": [20, 25], "quantity": 16},
+    "leg": {"size": [4, 25], "quantity": 50}
+  }
+}
+
+{
+  "order_id": "order_009",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 4},
+    "chair": {"size": [20, 25], "quantity": 8},
+    "leg": {"size": [4, 25], "quantity": 30},
+    "board": {"size": [50, 60], "quantity": 2}  // New larger piece
+  }
+}
+
+{
+  "order_id": "order_010",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 5},
+    "chair": {"size": [20, 25], "quantity": 10},
+    "leg": {"size": [4, 25], "quantity": 35},
+    "board": {"size": [50, 60], "quantity": 3}
+  }
+}
+
+{
+  "order_id": "order_011",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 6},
+    "chair": {"size": [20, 25], "quantity": 12},
+    "leg": {"size": [4, 25], "quantity": 40},
+    "board": {"size": [50, 60], "quantity": 4}
+  }
+}
+
+{
+  "order_id": "order_012",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 7},
+    "chair": {"size": [20, 25], "quantity": 14},
+    "leg": {"size": [4, 25], "quantity": 45},
+    "board": {"size": [50, 60], "quantity": 5}
+  }
+}
+
+{
+  "order_id": "order_013",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 3},
+    "chair": {"size": [20, 25], "quantity": 6},
+    "leg": {"size": [4, 25], "quantity": 20},
+    "shelf": {"size": [30, 70], "quantity": 2},
+    "panel": {"size": [60, 80], "quantity": 1}
+  }
+}
+
+{
+  "order_id": "order_014",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 4},
+    "chair": {"size": [20, 25], "quantity": 8},
+    "leg": {"size": [4, 25], "quantity": 25},
+    "shelf": {"size": [30, 70], "quantity": 3},
+    "panel": {"size": [60, 80], "quantity": 2}
+  }
+}
+
+{
+  "order_id": "order_015",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 5},
+    "chair": {"size": [20, 25], "quantity": 10},
+    "leg": {"size": [4, 25], "quantity": 30},
+    "shelf": {"size": [30, 70], "quantity": 4},
+    "panel": {"size": [60, 80], "quantity": 3}
+  }
+}
+
+{
+  "order_id": "order_016",
+  "stock_size": [100, 100],
+  "items": {
+    "table": {"size": [40, 50], "quantity": 6},
+    "chair": {"size": [20, 25], "quantity": 12},
+    "leg": {"size": [4, 25], "quantity": 35},
+    "shelf": {"size": [30, 70], "quantity": 5},
+    "panel": {"size": [60, 80], "quantity": 4}
+  }
+}
+
+[
+  {
+    "order_id": "order_017",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 5 }, "chair": { "size": [20, 25], "quantity": 10 }, "leg": { "size": [4, 25], "quantity": 40 }, "board": { "size": [50, 60], "quantity": 2 } }
+  },
+  {
+    "order_id": "order_018",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 6 }, "chair": { "size": [20, 25], "quantity": 12 }, "leg": { "size": [4, 25], "quantity": 45 }, "shelf": { "size": [30, 70], "quantity": 3 } }
+  },
+  {
+    "order_id": "order_019",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 7 }, "chair": { "size": [20, 25], "quantity": 14 }, "leg": { "size": [4, 25], "quantity": 50 }, "panel": { "size": [60, 80], "quantity": 2 } }
+  },
+  {
+    "order_id": "order_020",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 8 }, "chair": { "size": [20, 25], "quantity": 16 }, "leg": { "size": [4, 25], "quantity": 55 }, "board": { "size": [50, 60], "quantity": 3 } }
+  },
+  {
+    "order_id": "order_021",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 9 }, "chair": { "size": [20, 25], "quantity": 18 }, "leg": { "size": [4, 25], "quantity": 60 }, "shelf": { "size": [30, 70], "quantity": 4 } }
+  },
+  {
+    "order_id": "order_022",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 10 }, "chair": { "size": [20, 25], "quantity": 20 }, "leg": { "size": [4, 25], "quantity": 65 }, "panel": { "size": [60, 80], "quantity": 3 } }
+  },
+  {
+    "order_id": "order_023",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 11 }, "chair": { "size": [20, 25], "quantity": 22 }, "leg": { "size": [4, 25], "quantity": 70 }, "board": { "size": [50, 60], "quantity": 4 } }
+  },
+  {
+    "order_id": "order_024",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 12 }, "chair": { "size": [20, 25], "quantity": 24 }, "leg": { "size": [4, 25], "quantity": 75 }, "shelf": { "size": [30, 70], "quantity": 5 } }
+  },
+  {
+    "order_id": "order_025",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 13 }, "chair": { "size": [20, 25], "quantity": 26 }, "leg": { "size": [4, 25], "quantity": 80 }, "panel": { "size": [60, 80], "quantity": 4 } }
+  },
+  {
+    "order_id": "order_026",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 14 }, "chair": { "size": [20, 25], "quantity": 28 }, "leg": { "size": [4, 25], "quantity": 85 }, "board": { "size": [50, 60], "quantity": 5 } }
+  },
+  {
+    "order_id": "order_027",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 15 }, "chair": { "size": [20, 25], "quantity": 30 }, "leg": { "size": [4, 25], "quantity": 90 }, "shelf": { "size": [30, 70], "quantity": 6 } }
+  },
+  {
+    "order_id": "order_028",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 16 }, "chair": { "size": [20, 25], "quantity": 32 }, "leg": { "size": [4, 25], "quantity": 95 }, "panel": { "size": [60, 80], "quantity": 5 } }
+  },
+  {
+    "order_id": "order_029",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 17 }, "chair": { "size": [20, 25], "quantity": 34 }, "leg": { "size": [4, 25], "quantity": 100 }, "board": { "size": [50, 60], "quantity": 6 } }
+  },
+  {
+    "order_id": "order_030",
+    "stock_size": [100, 100],
+    "items": { "table": { "size": [40, 50], "quantity": 18 }, "chair": { "size": [20, 25], "quantity": 36 }, "leg": { "size": [4, 25], "quantity": 105 }, "shelf": { "size": [30, 70], "quantity": 7 } }
+  }
+]
+
+{
+  "order_id": "order_031",
+  "stock_size": [120, 120],
+  "items": {
+    "table": { "size": [45, 55], "quantity": 20 },
+    "chair": { "size": [22, 27], "quantity": 40 },
+    "leg": { "size": [4, 26], "quantity": 110 },
+    "shelf": { "size": [32, 72], "quantity": 8 }
+  }
+}
+
+{
+  "order_id": "order_032",
+  "stock_size": [150, 150],
+  "items": {
+    "table": { "size": [50, 60], "quantity": 22 },
+    "chair": { "size": [24, 28], "quantity": 45 },
+    "leg": { "size": [5, 27], "quantity": 120 },
+    "shelf": { "size": [35, 75], "quantity": 9 },
+    "cabinet": { "size": [60, 80], "quantity": 5 }
+  }
+}
+
+{
+  "order_id": "order_033",
+  "stock_size": [180, 180],
+  "items": {
+    "table": { "size": [55, 65], "quantity": 24 },
+    "chair": { "size": [26, 30], "quantity": 50 },
+    "leg": { "size": [5, 28], "quantity": 130 },
+    "shelf": { "size": [38, 78], "quantity": 10 },
+    "cabinet": { "size": [65, 85], "quantity": 6 }
+  }
+}
+
+{
+  "order_id": "order_034",
+  "stock_size": [200, 200],
+  "items": {
+    "table": { "size": [60, 70], "quantity": 26 },
+    "chair": { "size": [28, 32], "quantity": 55 },
+    "leg": { "size": [6, 30], "quantity": 140 },
+    "shelf": { "size": [40, 80], "quantity": 11 },
+    "cabinet": { "size": [70, 90], "quantity": 7 }
+  }
+}
+
+{
+  "order_id": "order_035",
+  "stock_size": [220, 220],
+  "items": {
+    "table": { "size": [65, 75], "quantity": 28 },
+    "chair": { "size": [30, 34], "quantity": 60 },
+    "leg": { "size": [6, 32], "quantity": 150 },
+    "shelf": { "size": [42, 82], "quantity": 12 },
+    "cabinet": { "size": [75, 95], "quantity": 8 }
+  }
+}
+
+{
+  "order_id": "order_036",
+  "stock_size": [250, 250],
+  "items": {
+    "table": { "size": [70, 80], "quantity": 30 },
+    "chair": { "size": [32, 36], "quantity": 65 },
+    "leg": { "size": [7, 34], "quantity": 160 },
+    "shelf": { "size": [45, 85], "quantity": 13 },
+    "cabinet": { "size": [80, 100], "quantity": 9 }
+  }
+}
+{
+  "order_id": "order_037",
+  "stock_size": [280, 280],
+  "items": {
+    "table": { "size": [75, 85], "quantity": 32 },
+    "chair": { "size": [34, 38], "quantity": 70 },
+    "leg": { "size": [7, 36], "quantity": 170 },
+    "shelf": { "size": [48, 88], "quantity": 14 },
+    "cabinet": { "size": [85, 105], "quantity": 10 }
+  }
+}
+{
+  "order_id": "order_038",
+  "stock_size": [300, 300],
+  "items": {
+    "table": { "size": [80, 90], "quantity": 34 },
+    "chair": { "size": [36, 40], "quantity": 75 },
+    "leg": { "size": [8, 38], "quantity": 180 },
+    "shelf": { "size": [50, 90], "quantity": 15 },
+    "cabinet": { "size": [90, 110], "quantity": 11 }
+  }
+}
+{
+  "order_id": "order_039",
+  "stock_size": [320, 320],
+  "items": {
+    "table": { "size": [85, 95], "quantity": 36 },
+    "chair": { "size": [38, 42], "quantity": 80 },
+    "leg": { "size": [8, 40], "quantity": 190 },
+    "shelf": { "size": [52, 92], "quantity": 16 },
+    "cabinet": { "size": [95, 115], "quantity": 12 }
+  }
+}
+{
+  "order_id": "order_040",
+  "stock_size": [350, 350],
+  "items": {
+    "table": { "size": [90, 100], "quantity": 38 },
+    "chair": { "size": [40, 44], "quantity": 85 },
+    "leg": { "size": [9, 42], "quantity": 200 },
+    "shelf": { "size": [55, 95], "quantity": 17 },
+    "cabinet": { "size": [100, 120], "quantity": 13 }
+  }
+}
+{
+  "order_id": "order_041",
+  "stock_size": [380, 380],
+  "items": {
+    "table": { "size": [95, 105], "quantity": 40 },
+    "chair": { "size": [42, 46], "quantity": 90 },
+    "leg": { "size": [9, 44], "quantity": 210 },
+    "shelf": { "size": [58, 98], "quantity": 18 },
+    "cabinet": { "size": [105, 125], "quantity": 14 }
+  }
+}
+{
+  "order_id": "order_042",
+  "stock_size": [400, 400],
+  "items": {
+    "table": { "size": [100, 110], "quantity": 42 },
+    "chair": { "size": [44, 48], "quantity": 95 },
+    "leg": { "size": [10, 46], "quantity": 220 },
+    "shelf": { "size": [60, 100], "quantity": 19 },
+    "cabinet": { "size": [110, 130], "quantity": 15 }
+  }
+}
+{
+  "order_id": "order_043",
+  "stock_size": [420, 420],
+  "items": {
+    "table": { "size": [105, 115], "quantity": 44 },
+    "chair": { "size": [46, 50], "quantity": 100 },
+    "leg": { "size": [10, 48], "quantity": 230 },
+    "shelf": { "size": [62, 102], "quantity": 20 },
+    "cabinet": { "size": [115, 135], "quantity": 16 }
+  }
+}
+{
+  "order_id": "order_044",
+  "stock_size": [450, 450],
+  "items": {
+    "table": { "size": [110, 120], "quantity": 46 },
+    "chair": { "size": [48, 52], "quantity": 105 },
+    "leg": { "size": [11, 50], "quantity": 240 },
+    "shelf": { "size": [65, 105], "quantity": 21 },
+    "cabinet": { "size": [120, 140], "quantity": 17 }
+  }
+}
+{
+  "order_id": "order_045",
+  "stock_size": [480, 480],
+  "items": {
+    "table": { "size": [115, 125], "quantity": 48 },
+    "chair": { "size": [50, 54], "quantity": 110 },
+    "leg": { "size": [11, 52], "quantity": 250 },
+    "shelf": { "size": [68, 108], "quantity": 22 },
+    "cabinet": { "size": [125, 145], "quantity": 18 }
+  }
+}
+{
+  "order_id": "order_046",
+  "stock_size": [500, 500],
+  "items": {
+    "table": { "size": [120, 130], "quantity": 50 },
+    "chair": { "size": [52, 56], "quantity": 115 },
+    "leg": { "size": [12, 54], "quantity": 260 },
+    "shelf": { "size": [70, 110], "quantity": 23 },
+    "cabinet": { "size": [130, 150], "quantity": 19 }
+  }
+}
+{
+  "order_id": "order_047",
+  "stock_size": [500, 500],
+  "items": {
+    "table": { "size": [125, 135], "quantity": 52 },
+    "chair": { "size": [54, 58], "quantity": 120 },
+    "leg": { "size": [12, 56], "quantity": 270 },
+    "shelf": { "size": [72, 112], "quantity": 24 },
+    "cabinet": { "size": [135, 155], "quantity": 20 }
+  }
+}
+{
+  "order_id": "order_048",
+  "stock_size": [500, 500],
+  "items": {
+    "table": { "size": [130, 140], "quantity": 54 },
+    "chair": { "size": [56, 60], "quantity": 125 },
+    "leg": { "size": [13, 58], "quantity": 280 },
+    "shelf": { "size": [75, 115], "quantity": 25 },
+    "cabinet": { "size": [140, 160], "quantity": 21 }
+  }
+}
+{
+  "order_id": "order_049",
+  "stock_size": [500, 500],
+  "items": {
+    "table": { "size": [135, 145], "quantity": 56 },
+    "chair": { "size": [58, 62], "quantity": 130 },
+    "leg": { "size": [13, 60], "quantity": 290 },
+    "shelf": { "size": [78, 118], "quantity": 26 },
+    "cabinet": { "size": [145, 165], "quantity": 22 }
+  }
+}
+{
+  "order_id": "order_050",
+  "stock_size": [500, 500],
+  "items": {
+    "table": { "size": [140, 150], "quantity": 58 },
+    "chair": { "size": [60, 64], "quantity": 135 },
+    "leg": { "size": [14, 62], "quantity": 300 },
+    "shelf": { "size": [80, 120], "quantity": 27 },
+    "cabinet": { "size": [150, 170], "quantity": 23 }
+  }
+}
+
+
+
+
+
