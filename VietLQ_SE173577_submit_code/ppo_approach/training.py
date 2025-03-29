@@ -19,10 +19,15 @@ def train_ppo_agent(env, agent, episodes=1000, max_timesteps=200, update_every=2
         render_every: Render environment every N episodes
     """
     os.makedirs(save_path, exist_ok=True)
+    training_history_file_path = f'{save_path}/training_history_data.npz'
     
+    # Remove the old history file
+    if os.path.exists(training_history_file_path):
+        os.remove(training_history_file_path)
+
     rewards_history = []
-    waste_history = []
-    efficiency_history = []
+    waste_rate_history = []
+    fitness_history = []
     platforms_used_history = []
     
     timestep_counter = 0
@@ -56,10 +61,14 @@ def train_ppo_agent(env, agent, episodes=1000, max_timesteps=200, update_every=2
         # Record episode stats
         rewards_history.append(total_reward)
         
-        if 'waste' in info:
-            waste_history.append(info['waste'])
-            efficiency_history.append(info['efficiency'])
+        if 'waste_rate' in info:
+            waste_rate_history.append(info['waste_rate'])
+            fitness_history.append(info['fitness'])
             platforms_used_history.append(info['platforms_used'])
+        np.savez(training_history_file_path, 
+                waste_rate_history=waste_rate_history, 
+                fitness_history=fitness_history, 
+                platforms_used_history=platforms_used_history)
         
         # Render occasionally
         if episode % render_every == 0:
@@ -87,15 +96,15 @@ def train_ppo_agent(env, agent, episodes=1000, max_timesteps=200, update_every=2
     plt.xlabel('Episode')
     plt.ylabel('Reward')
     
-    if waste_history:
+    if waste_rate_history:
         plt.subplot(2, 2, 2)
-        plt.plot(waste_history)
+        plt.plot(waste_rate_history)
         plt.title('Waste')
         plt.xlabel('Completed Episode')
         plt.ylabel('Waste Area')
         
         plt.subplot(2, 2, 3)
-        plt.plot(efficiency_history)
+        plt.plot(fitness_history)
         plt.title('Efficiency')
         plt.xlabel('Completed Episode')
         plt.ylabel('Efficiency')
@@ -110,9 +119,9 @@ def train_ppo_agent(env, agent, episodes=1000, max_timesteps=200, update_every=2
     plt.savefig(f"{save_path}/ppo_training_progress.png")
     plt.show()
     
-    return rewards_history, waste_history, efficiency_history, platforms_used_history
+    return rewards_history, waste_rate_history, fitness_history, platforms_used_history
 
-def evaluate_ppo_agent(env, agent, episodes=10, max_steps=200, render=True):
+def evaluate_ppo_agent(env, agent, max_steps=200, episodes=10, render=True):
     """
     Evaluate the trained PPO agent on new orders.
     
@@ -124,8 +133,8 @@ def evaluate_ppo_agent(env, agent, episodes=10, max_steps=200, render=True):
         render: Whether to render the environment
     """
     total_rewards = []
-    wastes = []
-    efficiencies = []
+    waste_rates = []
+    fitness = []
     platforms_used = []
     
     for episode in range(episodes):
@@ -146,9 +155,9 @@ def evaluate_ppo_agent(env, agent, episodes=10, max_steps=200, render=True):
         
         total_rewards.append(total_reward)
         
-        if 'waste' in info:
-            wastes.append(info['waste'])
-            efficiencies.append(info['efficiency'])
+        if 'waste_rate' in info:
+            waste_rates.append(info['waste_rate'])
+            fitness.append(info['fitness'])
             platforms_used.append(info['platforms_used'])
         
         if render:
@@ -162,9 +171,9 @@ def evaluate_ppo_agent(env, agent, episodes=10, max_steps=200, render=True):
     
     print("\nEvaluation Results:")
     print(f"Average Reward: {np.mean(total_rewards):.2f}")
-    if wastes:
-        print(f"Average Waste: {np.mean(wastes):.2f}")
-        print(f"Average Efficiency: {np.mean(efficiencies):.2f}")
+    if waste_rates:
+        print(f"Average Waste: {np.mean(waste_rates):.2f}")
+        print(f"Average Efficiency: {np.mean(fitness):.2f}")
         print(f"Average Platforms Used: {np.mean(platforms_used):.2f}")
     
-    return total_rewards, wastes, efficiencies, platforms_used
+    return total_rewards, waste_rates, fitness, platforms_used

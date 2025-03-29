@@ -69,9 +69,16 @@ Absolutely, let's condense those detailed descriptions into short, impactful sum
 │   │   ├── main.py           # Main code for training the agent in cli   
 │   │   ├── training.py       # Code for setup the training pipeline
 │   │   ├── test_on_custom_order.ipynb     # Notebook for tesing and visualizing agent on a defined customer order
-│   │   ├── training_with_visualize.py     # Notebook for training and visualizing the training progress                     
+│   │   ├── training_with_visualize.py     # Notebook for training and visualizing the training progress                      
 │   │   ├── result                    
-│   │   │   ├── dqn_training_result.png    # Visualize the training result
+│   │   │   ├── dqn_training_progress_1000ep.png    # Visualize the training result over 1000 episodes
+│   │   │   ├── dqn_training_progress_7000ep.png    # Visualize the training result over 7000 episodes            
+│   │   │   ├── evaluating_history_data.npz         # npz file for loading the result of evaluating agent on 50 customer orders
+│   │   │   ├── training_history_data.npz           # npz file for loading the result of training the agent on 7000 episodes
+│   │   │   ├── evaluating_on_50_customer_orders.png   # Visualize the result of evaluating agent on 50 customer orders  
+│   │   │   ├── README.md      
+│   │   ├── models
+│   │   │   ├── README.md    # contain the guide for downloading the pre-trained model
 │   ├── ppo_approach                  
 │   │   ├── README            # Provided detail about the concept of implementing the agent              
 │   │   ├── agent.py          # Code for setup the ppo agent             
@@ -79,9 +86,17 @@ Absolutely, let's condense those detailed descriptions into short, impactful sum
 │   │   ├── main.py           # Main code for training the agent in cli   
 │   │   ├── training.py       # Code for setup the training pipeline
 │   │   ├── test_on_custom_order.ipynb     # Notebook for tesing and visualizing agent on a defined customer order
-│   │   ├── training_with_visualize.py     # Notebook for training and visualizing the training progress                   
+│   │   ├── training_with_visualize.py     # Notebook for training and visualizing the training progress                     
 │   │   ├── result                    
-│   │   │   ├── ppo_training_result.png    # Visualize the training result
+│   │   │   ├── ppo_training_progress_1000ep.png    # Visualize the training result over 1000 episodes
+│   │   │   ├── ppo_training_progress_7000ep.png    # Visualize the training result over 7000 episodes            
+│   │   │   ├── evaluating_history_data.npz         # npz file for loading the result of evaluating agent on 50 customer orders
+│   │   │   ├── training_history_data.npz           # npz file for loading the result of training the agent on 7000 episodes
+│   │   │   ├── evaluating_on_50_customer_orders.png   # Visualize the result of evaluating agent on 50 customer orders   
+│   │   │   ├── README.md   
+│   │   ├── models
+│   │   │   ├── README.md    # contain the guide for downloading the pre-trained model
+```
 ```
 ## License
 

@@ -104,6 +104,14 @@ Based on the implementation and training process in the provided code, the follo
 
 - Trained PPO models are stored in google drive, please refer the README file in `models/` directory for detail about downloading the final trained model.
 - Training result plots saved in `result/`, tracking agent performance over episodes.
+#### 1000 epsisode training result:
+![1000 epsisode training result](result/ppo_training_progress_1000ep.png)
+
+#### 7000 epsisode training result:
+![7000 epsisode training result](result/ppo_training_progress_7000ep.png)
+
+#### Evaluating on 50 customer orders:
+![7000 epsisode training result](result/evaluating_on_50_customer_orders.png)
 
 ### Project Structure
 ```
@@ -116,9 +124,16 @@ VietLQ_SE173577_submit_code
 │   ├── main.py           # Main code for training the agent in cli   
 │   ├── training.py       # Code for setup the training pipeline
 │   ├── test_on_custom_order.ipynb     # Notebook for tesing and visualizing agent on a defined customer order
-│   ├── training_with_visualize.py     # Notebook for training and visualizing the training progress                    
+│   ├── training_with_visualize.py     # Notebook for training and visualizing the training progress                      
 │   ├── result                    
-│   │   ├── ppo_training_result.png    # Visualize the training result 
+│   │   ├── ppo_training_progress_1000ep.png    # Visualize the training result over 1000 episodes
+│   │   ├── ppo_training_progress_7000ep.png    # Visualize the training result over 7000 episodes            
+│   │   ├── evaluating_history_data.npz         # npz file for loading the result of evaluating agent on 50 customer orders
+│   │   ├── training_history_data.npz           # npz file for loading the result of training the agent on 7000 episodes
+│   │   ├── evaluating_on_50_customer_orders.png   # Visualize the result of evaluating agent on 50 customer orders   
+│   │   ├── README.md   
+│   ├── models
+│   │   ├── README.md    # contain the guide for downloading the pre-trained model
 ```
 
 ### Get Started
