@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-# from typing import List, Tuple, Dict, Optional
 import gym
 from gym import spaces
 from scipy import ndimage
@@ -17,13 +15,9 @@ class WoodCuttingEnv(gym.Env):
         # State: Representation of the current platform's state
         # We'll represent it as a binary grid
         self.grid_size = 100  # We'll use a 100x100 grid for simplicity
-        
-
-        #################################################################################
         # Track piece types in each position (0 = empty, 1+ = piece type index + 1)
         self.platforms = [np.zeros((self.grid_size, self.grid_size), dtype=np.int8)]
         self.piece_types = [np.zeros((self.grid_size, self.grid_size), dtype=np.int8)]
-        #################################################################################
 
 
         # State space: Current platform's grid state + remaining order pieces + current platform index
@@ -64,18 +58,10 @@ class WoodCuttingEnv(gym.Env):
     
     def reset(self, order=None):
         """Reset environment with a new or provided order."""
-
-        #################################################################################
         # Initialize the first platform grid (0 = empty, 1 = filled)
         self.platforms = [np.zeros((self.grid_size, self.grid_size), dtype=np.int8)]
         self.piece_types = [np.zeros((self.grid_size, self.grid_size), dtype=np.int8)]
-        #################################################################################
-
-        # # Initialize the first platform grid (0 = empty, 1 = filled)
-        # self.platforms = [np.zeros((self.grid_size, self.grid_size), dtype=np.int8)]
-
         self.current_platform_idx = 0
-        
         
         # Generate a random order if none provided
         if order is None:
@@ -148,6 +134,47 @@ class WoodCuttingEnv(gym.Env):
         #################################################################################
         self.piece_types[platform_idx][y:y+piece_height, x:x+piece_width] = piece_type + 1  # +1 to avoid 0
         #################################################################################
+    
+    def calculate_metrics(self):
+        """
+        Calculate various efficiency metrics for the current cutting solution.
+        
+        Returns:
+            dict: Dictionary containing the following metrics:
+                - waste_rate: Total unused area / Total area of all cut stock
+                - fitness: Total area of all cut items / Total area of all cut stock
+                - platforms_used: Number of platforms used
+                - filled_area: Total area filled with cut items
+                - total_stock_area: Total area of all cut stock
+        """
+        # Count how many platforms were actually used
+        used_platforms = 0
+        filled_area = 0
+        
+        for platform in self.platforms:
+            if np.any(platform == 1):
+                used_platforms += 1
+                filled_area += np.sum(platform)
+        
+        # Calculate total stock area (area of all used platforms)
+        total_stock_area = self.big_platform_width * self.big_platform_height * used_platforms
+        
+        # Calculate waste rate
+        waste_area = total_stock_area - filled_area
+        waste_rate = waste_area / total_stock_area if total_stock_area > 0 else 0
+        
+        # Calculate fitness
+        fitness = filled_area / total_stock_area if total_stock_area > 0 else 0
+        
+        return {
+            'waste_rate': waste_rate,
+            'fitness': fitness,
+            'platforms_used': used_platforms,
+            'filled_area': filled_area,
+            'total_stock_area': total_stock_area,
+            'waste_area': waste_area
+        }
+    
 
     def step(self, action):
         """
@@ -224,21 +251,20 @@ class WoodCuttingEnv(gym.Env):
         # Check if all pieces have been placed
         done = np.all(self.order[:, 2] == 0)
         
-        # Calculate total waste (empty space) on used platforms
         if done:
-            total_area = self.big_platform_width * self.big_platform_height * len(self.platforms)
-            filled_area = sum(np.sum(platform) for platform in self.platforms)
-            waste = total_area - filled_area
-            efficiency = filled_area / total_area
+            # Calculate metrics
+            metrics = self.calculate_metrics()
             
-            # Add final reward based on efficiency
-            reward += efficiency * 1000
+            # Add final reward based on fitness
+            reward += metrics['fitness'] * 1000
             
             return self._get_observation(), reward, done, {
                 'message': 'All pieces placed',
-                'waste': waste,
-                'efficiency': efficiency,
-                'platforms_used': len(self.platforms)
+                'waste_rate': metrics['waste_rate'],
+                'fitness': metrics['fitness'],
+                'platforms_used': metrics['platforms_used'],
+                'filled_area': metrics['filled_area'],
+                'total_stock_area': metrics['total_stock_area']
             }
         
         return self._get_observation(), reward, done, {}
@@ -247,10 +273,8 @@ class WoodCuttingEnv(gym.Env):
         # """Render the current state of the environment."""
         """Render the current state of the environment with different colors for each piece type."""
         piece_colors = ['white', 'red', 'blue', 'green', 'purple', 'orange', 'yellow', 'black', 'gray', 'pink', 'brown']
-
-        #################################################################################
-
         fig, axs = plt.subplots(1, len(self.platforms), figsize=(5*len(self.platforms), 5))
+
         if len(self.platforms) == 1:
             axs = [axs]
         
@@ -276,10 +300,6 @@ class WoodCuttingEnv(gym.Env):
             ax.set_ylim(0, self.grid_size)
             ax.invert_yaxis()  # Invert y-axis to match grid coordinates
             
-            # Draw grid lines
-            # Add grid lines (optional, for clarity)
-            ax.set_xticks(np.arange(-.5, self.grid_size, 10))
-            ax.set_yticks(np.arange(-.5, self.grid_size, 10))
             ax.grid(True, color='black', linewidth=0.5, alpha=0.3)
             
             # Add piece outlines
@@ -288,28 +308,6 @@ class WoodCuttingEnv(gym.Env):
                 if not np.any(piece_mask):
                     continue
                     
-                # Find connected components
-                labeled, num_features = ndimage.label(piece_mask)
-                
-                for feature in range(1, num_features + 1):
-                    feature_mask = (labeled == feature)
-                    
-                    # Get the bounds of this feature
-                    ys, xs = np.where(feature_mask)
-                    x_min, x_max = np.min(xs), np.max(xs)
-                    y_min, y_max = np.min(ys), np.max(ys)
-                    
-                    # Draw rectangle around the piece
-                    # rect = patches.Rectangle(
-                    #     (x_min - 0.5, y_min - 0.5), 
-                    #     x_max - x_min + 1, 
-                    #     y_max - y_min + 1, 
-                    #     linewidth=2, 
-                    #     edgecolor='black', 
-                    #     facecolor='none'
-                    # )
-                    # ax.add_patch(rect)
-        
         # Display remaining order with colors
         order_text = []
         for idx, (w, h, q) in enumerate(self.order):

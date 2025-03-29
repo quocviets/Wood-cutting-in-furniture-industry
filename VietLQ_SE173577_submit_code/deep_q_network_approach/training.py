@@ -19,10 +19,15 @@ def train_agent(env, agent, episodes=1000, max_steps=200, update_target_every=10
         render_every: Render environment every N episodes
     """
     os.makedirs(save_path, exist_ok=True)
+    training_history_file_path = f'{save_path}/training_history_data.npz'
     
+    # Remove the old history file
+    if os.path.exists(training_history_file_path):
+        os.remove(training_history_file_path)
+
     rewards_history = []
-    waste_history = []
-    efficiency_history = []
+    waste_rate_history = []
+    fitness_history = []
     platforms_used_history = []
     
     for episode in tqdm(range(episodes), desc="Training"):
@@ -50,21 +55,23 @@ def train_agent(env, agent, episodes=1000, max_steps=200, update_target_every=10
                 # Record metrics if episode is complete
                 rewards_history.append(total_reward)
                 
-                if 'waste' in info:
-                    waste_history.append(info['waste'])
-                    efficiency_history.append(info['efficiency'])
+                if 'waste_rate' in info:
+                    waste_rate_history.append(info['waste_rate'])
+                    fitness_history.append(info['fitness'])
                     platforms_used_history.append(info['platforms_used'])
-                
+                np.savez(training_history_file_path, 
+                        waste_rate_history=waste_rate_history, 
+                        fitness_history=fitness_history, 
+                        platforms_used_history=platforms_used_history)
                 # Render occasionally
                 if episode % render_every == 0:
                     print(f"\nEpisode {episode}")
                     print(f"Reward: {total_reward:.2f}")
-                    if 'waste' in info:
-                        print(f"Waste: {info['waste']}")
-                        print(f"Efficiency: {info['efficiency']:.2f}")
+                    if 'waste_rate' in info:
+                        print(f"Waste_rate: {info['waste_rate']}")
+                        print(f"Fitness: {info['fitness']:.2f}")
                         print(f"Platforms used: {info['platforms_used']}")
-                    env.render()
-                
+                    env.render()         
                 break
         
         # Update target network periodically
@@ -74,7 +81,7 @@ def train_agent(env, agent, episodes=1000, max_steps=200, update_target_every=10
         # Save model periodically
         if episode % save_every == 0:
             agent.save_model(f"{save_path}/dqn_wood_cutting_ep{episode}.pth")
-    
+
     # Save final model
     agent.save_model(f"{save_path}/dqn_wood_cutting_final.pth")
     
@@ -87,16 +94,16 @@ def train_agent(env, agent, episodes=1000, max_steps=200, update_target_every=10
     plt.xlabel('Episode')
     plt.ylabel('Reward')
     
-    if waste_history:
+    if waste_rate_history:
         plt.subplot(2, 2, 2)
-        plt.plot(waste_history)
-        plt.title('Waste')
+        plt.plot(waste_rate_history)
+        plt.title('Waste Rate Across Episodes')
         plt.xlabel('Completed Episode')
-        plt.ylabel('Waste Area')
+        plt.ylabel('Waste Rate')
         
         plt.subplot(2, 2, 3)
-        plt.plot(efficiency_history)
-        plt.title('Efficiency')
+        plt.plot(fitness_history)
+        plt.title('Fitness Across Episodes')
         plt.xlabel('Completed Episode')
         plt.ylabel('Efficiency')
         
@@ -110,7 +117,7 @@ def train_agent(env, agent, episodes=1000, max_steps=200, update_target_every=10
     plt.savefig(f"{save_path}/training_progress.png")
     plt.show()
     
-    return rewards_history, waste_history, efficiency_history, platforms_used_history
+    return rewards_history, waste_rate_history, fitness_history, platforms_used_history
 
 def evaluate_agent(env, agent, max_step=200, episodes=10, render=True):
     """
@@ -123,8 +130,8 @@ def evaluate_agent(env, agent, max_step=200, episodes=10, render=True):
         render: Whether to render the environment
     """
     total_rewards = []
-    wastes = []
-    efficiencies = []
+    waste_rates = []
+    fitness = []
     platforms_used = []
     
     for episode in range(episodes):
@@ -143,25 +150,25 @@ def evaluate_agent(env, agent, max_step=200, episodes=10, render=True):
         
         total_rewards.append(total_reward)
         
-        if 'waste' in info:
-            wastes.append(info['waste'])
-            efficiencies.append(info['efficiency'])
+        if 'waste_rate' in info:
+            waste_rates.append(info['waste_rate'])
+            fitness.append(info['fitness'])
             platforms_used.append(info['platforms_used'])
         
         if render:
             print(f"\nEvaluation Episode {episode + 1}")
             print(f"Reward: {total_reward:.2f}")
-            if 'waste' in info:
-                print(f"Waste: {info['waste']}")
-                print(f"Efficiency: {info['efficiency']:.2f}")
+            if 'waste_rate' in info:
+                print(f"Waste_rate: {info['waste_rate']}")
+                print(f"Fitness: {info['fitness']:.2f}")
                 print(f"Platforms used: {info['platforms_used']}")
             env.render()
     
     print("\nEvaluation Results:")
     print(f"Average Reward: {np.mean(total_rewards):.2f}")
-    if wastes:
-        print(f"Average Waste: {np.mean(wastes):.2f}")
-        print(f"Average Efficiency: {np.mean(efficiencies):.2f}")
+    if waste_rates:
+        print(f"Average Waste_rate: {np.mean(waste_rates):.2f}")
+        print(f"Average Fitness: {np.mean(fitness):.2f}")
         print(f"Average Platforms Used: {np.mean(platforms_used):.2f}")
     
-    return total_rewards, wastes, efficiencies, platforms_used
+    return total_rewards, waste_rates, fitness, platforms_used
