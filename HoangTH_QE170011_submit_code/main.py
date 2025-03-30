@@ -1,4 +1,6 @@
 # main.py
+# file này sẽ visual kết quả cho bạn: cách sắp sếp của từng thuật toán, Create charts comparing metrics across algorithms
+#  chỉ nhận vào 1 data 
 
 import numpy as np
 import json
@@ -9,6 +11,9 @@ from policy.FirstFit import first_fit_policy
 from policy.Greedy import greedy_policy
 from utils.evaluate import evaluate_solution, print_evaluation, compare_algorithms
 from utils.visual import visualize_comparison, visualize_stock_heatmap, visualize_stocks, create_radar_chart
+
+input_file = "HoangTH_qe170011_submit_code/data/data_4.json"
+print(f"Loading data from {input_file}...")
 
 def load_data(filepath):
     """
@@ -48,6 +53,24 @@ def run_algorithm(algorithm_func, algorithm_name, observation, info):
 
 def main():
     # Create results directory if it doesn't exist
+<<<<<<< HEAD:HoangTH_qe170011_submit_code/main.py
+    results_dir = "HoangTH_qe170011_submit_code/results"
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # Change the default save location for matplotlib figures
+    original_savefig = plt.savefig
+    
+    def custom_savefig(fname, *args, **kwargs):
+        # Extracting just the filename without path
+        base_filename = os.path.basename(fname)
+        # Joining with our desired output directory
+        new_path = os.path.join(results_dir, base_filename)
+        return original_savefig(new_path, *args, **kwargs)
+    
+    # Override plt.savefig with our custom function
+    plt.savefig = custom_savefig
+
+=======
     import os
     os.makedirs("results", exist_ok=True)
     
@@ -55,6 +78,7 @@ def main():
     input_file = "policy_REL\data\data_1.json"
     print(f"Loading data from {input_file}...")
     
+>>>>>>> 7e2b3847f1c17b86aafdc9da88ad0f74c2c9d2ef:HoangTH_QE170011_submit_code/main.py
     try:
         observation_ff, info_ff = load_data(input_file)
         observation_bf, info_bf = load_data(input_file)
@@ -81,7 +105,7 @@ def main():
     compare_algorithms(ff_metrics, bf_metrics, greedy_metrics)
 
     # Create comparison charts
-    print("\nGenerating comparison visualizations...")
+    print("\n Generating comparison visualizations...")
     visualize_comparison(ff_metrics, bf_metrics, greedy_metrics)
     create_radar_chart(ff_metrics, bf_metrics, greedy_metrics)
     
@@ -146,11 +170,15 @@ def save_results(ff_metrics, bf_metrics, greedy_metrics):
     with open(results_file, "w") as f:
         json.dump(results, f, indent=4)
     
+<<<<<<< HEAD:HoangTH_qe170011_submit_code/main.py
+    print(f"\n Evaluation results saved to '{results_file}'")
+=======
     # Also save to standard location for backward compatibility
     with open("evaluation_results.json", "w") as f:
         json.dump(results, f, indent=4)
     
     print(f"\nEvaluation results saved to '{results_file}' and 'evaluation_results.json'")
+>>>>>>> 7e2b3847f1c17b86aafdc9da88ad0f74c2c9d2ef:HoangTH_QE170011_submit_code/main.py
 
 if __name__ == "__main__":
     try:

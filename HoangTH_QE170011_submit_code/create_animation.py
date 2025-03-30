@@ -8,6 +8,9 @@ import json
 import copy
 import os
 
+# data nhận vào ***cai này chỉ nên dùng 1 data thôi *** data_1.json, data_2.json, data_3.json, data_4.json
+data_file = "HoangTH_qe170011_submit_code\data\data_1.json"
+
 # Định nghĩa lại các thuật toán với khả năng ghi lại từng bước
 def first_fit_policy_visualize(observation, info):
     """First-Fit với logging từng bước"""
@@ -484,9 +487,12 @@ def run_all_algorithms(data_file):
     print("All animations created successfully!")
 
 if __name__ == "__main__":
+<<<<<<< HEAD:HoangTH_qe170011_submit_code/create_animation.py
+=======
     # Để chạy từ file dữ liệu của bạn, đổi đường dẫn này:
     data_file = "policy_REL/data/data_2.json"
     
+>>>>>>> 7e2b3847f1c17b86aafdc9da88ad0f74c2c9d2ef:HoangTH_QE170011_submit_code/test.py
     try:
         run_all_algorithms(data_file)
     except FileNotFoundError:
