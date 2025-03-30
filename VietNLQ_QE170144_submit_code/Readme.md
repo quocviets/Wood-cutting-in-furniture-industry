@@ -49,6 +49,7 @@ Where:
        - Update Q(s, a) using the Bellman formula
        - Set s = s'
 ```
+---
 
 ## ✅ requirements.txt
 ```bash
