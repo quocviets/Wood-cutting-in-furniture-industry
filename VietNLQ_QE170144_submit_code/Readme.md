@@ -143,6 +143,7 @@ Q-Learning provides a fast and interpretable method for solving the 2D cutting s
 
 ```bash
 python test.py
+or download test.ipynb
 ```
 
 Make sure to have the `q_table.pkl` file available, or train using `train.py` if needed.
