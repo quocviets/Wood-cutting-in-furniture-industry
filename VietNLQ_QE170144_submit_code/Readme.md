@@ -50,6 +50,10 @@ Where:
        - Set s = s'
 ```
 
+## ✅ requirements.txt
+```bash
+pip install -r requirements.txt
+```
 ---
 
 ## 🔢 Q-Learning Design Comparison Table
