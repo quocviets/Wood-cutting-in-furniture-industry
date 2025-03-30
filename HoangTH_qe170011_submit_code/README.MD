@@ -65,6 +65,7 @@ pip install numpy matplotlib
 ```bash
 python main.py                   ## run 3 algorithm and evaluate
 python create_animation.py       ## create gif for 3 algorithm
+python benchmark.py              ## create benchmark for 1,2,3 algorithm
 ```
 
 ---
@@ -77,6 +78,7 @@ python create_animation.py       ## create gif for 3 algorithm
 |   └──📄 data_2.json
 |   └──📄 data_3.json
 |   └──📄 data_4.json
+|   └──📄formatted_orders ### 50 data ###
 │──📁 policy/
 |   └──📄 FirstFit.py
 |   └──📄 BestFit.py
@@ -91,9 +93,12 @@ python create_animation.py       ## create gif for 3 algorithm
 |   └──📁 results_data_2
 |   └──📁 results_data_3
 |   └──📁 results_data_4
+|   └──📄cutting_stock_benchmark_results.csv   ### 50 data ###
 │──📄 create_animation.py
 │──📄 main.py
+│──📄 benchmark.py
 │──📄 README.md
+
 ```
 
 ---
